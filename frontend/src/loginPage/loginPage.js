@@ -5,15 +5,18 @@ export const loginPage = () => {
     const emailInput = document.createElement('input');
     const passInput = document.createElement('input');
     const subBtn = document.createElement('button');
+    const title = document.createElement('h1');
     
     // Add attributes
     div.id = 'loginpage';
+    title.innerText = 'Login to Lurk for work!';
     emailInput.type = 'text';
     emailInput.placeholder = 'email'
     passInput.type = 'password';
     passInput.placeholder = 'password';
     subBtn.type = 'submit';
     subBtn.innerText = 'Login now!';
+    form.className = 'centre-form';
 
     // Add event handlers
     const onSubmit = (e) => {
@@ -24,7 +27,7 @@ export const loginPage = () => {
     
     // Connect nodes
     form.append(emailInput, passInput, subBtn);
-    div.appendChild(form);
-    
+    div.append(title, form);
+
     return(div);
 };
