@@ -1,3 +1,5 @@
+import { BACKEND_PORT, BACKEND_URL } from "./config.js";
+
 /**
  * Given a js file object representing a jpg or png image, such as one taken
  * from a html file input element, return a promise which resolves to the file
@@ -28,4 +30,12 @@ export function fileToDataUrl(file) {
     });
     reader.readAsDataURL(file);
     return dataUrlPromise;
+}
+
+export function doFetch(endpoint, body, method, headers={'Content-Type': 'application/json'}, urlsearchparams=null) {
+    return fetch(`${BACKEND_URL + ':' + BACKEND_PORT + endpoint}${urlsearchparams === null ? '' : '?' + new URLSearchParams(urlsearchparams)}`, {
+        method: method,
+        headers: headers,
+        body: JSON.stringify(body),
+    }).then(res => res.json()).catch(e => e);
 }
