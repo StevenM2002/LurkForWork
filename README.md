@@ -328,9 +328,23 @@ Please note: When we test your UI we will use a pre-loaded database JSON that al
 			<ul>
 				<li>Your application is usable and easy to navigate. No obvious usability issues or confusing layouts/flows.</li>
 				<li>Your application follows standard accessibility guidelines, such as use of alt tags, and colours that aren't inaccessible.</li>
+				<li>Describe any attempts you've made to improve the usability/accessibility in `usability.md`</li>
 			</ul>
 		</td>
 	</tr>
+	<tr>
+    <td>(Bonus Marks) Extra Features</td>
+    <td>5%</td>
+    <td>
+      <ul>
+        <li>Implementation of extra features that are not included in the spec.</li>
+        <li>Extra features should be non-trivial, have a clear justification for existing, and show either a form of technical, product, or creative flare.</li>
+        <li>Any extra features written down in `BONUS.md` in the project folder</li>
+        <li>Any bonus marks that extend your ass3 mark above 100% will bleed into other assignment marks, but cannot contribute outside of the 80% of the course that is allocated for assignment marks</li>
+        <li><b>Expectations placed on solo groups will be half of that of pairs to achieve the same mark.</b></li>
+      </ul>
+    </td>
+  </tr>
 </table>
 
 ## 6. Originality of Work
