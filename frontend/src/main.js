@@ -4,5 +4,8 @@ import { fileToDataUrl } from './helpers.js';
 import { loginPage } from './loginPage/loginPage.js';
 import { registrationPage } from './registrationPage/registrationPage.js';
 
+const changePage = (page) => {
+
+};
 // document.body.appendChild(loginPage());
 document.body.appendChild(registrationPage());
