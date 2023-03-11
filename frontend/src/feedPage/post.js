@@ -53,7 +53,7 @@ export const post = ( { creatorId, createdAt, image, title, start, likes, descri
     showLikes.addEventListener('click', onShowLikes);
     
     // Connect elems
-    div.append(name, postedTime, titleJob, dateStart, imageJob, jobDescTitle, descJob, commentNum, likesNum);
+    div.append(name, postedTime, titleJob, dateStart, imageJob, jobDescTitle, descJob, commentNum, likesNum, children);
     return div;
 };
 

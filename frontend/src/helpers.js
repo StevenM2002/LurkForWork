@@ -32,10 +32,22 @@ export function fileToDataUrl(file) {
     return dataUrlPromise;
 }
 
-export function doFetch(endpoint, body, method, headers={'Content-Type': 'application/json'}, urlsearchparams=null) {
+export function doFetch(endpoint, body, method, urlsearchparams=null, token=undefined, headers={'Content-Type': 'application/json'}) {
     return fetch(`${BACKEND_URL + ':' + BACKEND_PORT + endpoint}${urlsearchparams === null ? '' : '?' + new URLSearchParams(urlsearchparams)}`, {
         method: method,
-        headers: headers,
-        body: JSON.stringify(body),
+        headers: {
+            ...headers,
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(body)
     }).then(res => res.json()).catch(e => e);
+}
+
+export function fetchUser(userId) {
+    return doFetch('/user', undefined, 'GET', { 'userId': userId }, window.localStorage.getItem('token'));
+}
+
+export function changeRoute(route) {
+    location.href = route;
+    window.dispatchEvent(new HashChangeEvent('hashchange'));
 }
