@@ -72,7 +72,10 @@
       "email": "hi",
       "name": "hi",
       "password": "hi",
-      "watcheeUserIds": {}
+      "watcheeUserIds": {
+        "65687": true,
+        "95112": true
+      }
     },
     "97467": {
       "email": "james@email.com",
@@ -88,6 +91,10 @@
     "387115": {
       "id": "387115",
       "creatorId": 96569,
+      "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
+      "title": "Hose Invader",
+      "start": "2011-10-05T14:48:00.000Z",
+      "description": "WOOOOOO",
       "createdAt": "2023-03-11T04:51:37.745Z",
       "likes": {},
       "comments": []

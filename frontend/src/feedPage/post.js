@@ -9,7 +9,7 @@
     // Job comments
 
 import { fetchUser } from "../helpers.js";
-export const post = ( { creatorId, createdAt, image, title, start, likes, description, comments }, children=null ) => {
+export const post = ( { creatorId, createdAt, image, title, start, likes, description, comments }, children=undefined ) => {
     // Create elems
     const div = document.createElement('div');
     const name = document.createElement('b');
@@ -23,9 +23,9 @@ export const post = ( { creatorId, createdAt, image, title, start, likes, descri
     const jobDescTitle = document.createElement('h2');
     const showLikes = document.createElement('button');
     const usersLiked = document.createElement('b');
-    
+    // TODO Need to fix 
     const delta = new Date() - new Date(createdAt);
-    const deltaStr = `${new Date(delta).getHours()} ${new Date(delta).getMinutes()}`
+    const deltaStr = `${Math.floor(delta / 3600000)} Hours ${Math.floor((delta % 3600000) / 60000)} Minutes ago`
     // Add attr
     div.className = 'post';
     fetchUser(creatorId).then(res => res.name).then(res => name.innerText = `Posted by: ${res}`);
@@ -53,6 +53,9 @@ export const post = ( { creatorId, createdAt, image, title, start, likes, descri
     showLikes.addEventListener('click', onShowLikes);
     
     // Connect elems
-    div.append(name, postedTime, titleJob, dateStart, imageJob, jobDescTitle, descJob, commentNum, likesNum, children);
+    div.append(name, postedTime, titleJob, dateStart, imageJob, jobDescTitle, descJob, commentNum, likesNum);
+    if (children !== undefined) {
+        div.appendChild(children);
+    }
     return div;
 };
