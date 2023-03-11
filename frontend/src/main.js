@@ -7,25 +7,23 @@ import { registrationPage } from './registrationPage/registrationPage.js';
 
 
 const routes = {
-    '#login': loginPage(),
-    '#register': registrationPage(),
-    '#feed': feedPage(),
+    '#login': loginPage,
+    '#register': registrationPage,
+    '#feed': feedPage,
 }
 
 // Routing for when user first opens site
-document.body.append(...Object.values(routes));
-document.querySelectorAll('body > div').forEach(elem => elem.classList.add('hidden'));
 try {
-    routes[location.hash].classList.remove('hidden');
+    document.body.appendChild(routes[location.hash]());
 } catch (TypeError) {
     alert('This route does not exist');
 }
 
 // Routing for when user changes hash url while they are in application
 const handleHashChange = () => {
-    document.querySelectorAll('body > div').forEach(elem => elem.classList.add('hidden'));
+    document.body.textContent = '';
     try {
-        routes[location.hash].classList.remove('hidden');
+        document.body.appendChild(routes[location.hash]());
     } catch (TypeError) {
         alert('This route does not exist');
     }

@@ -31,7 +31,7 @@ export const loginPage = () => {
             if (res.error === undefined) {
                 window.localStorage.setItem('token', res.token);
                 window.localStorage.setItem('userId', res.userId);
-                changeRoute('/#feed');
+                location.href = '/#feed';
             } else {
                 alert(res.error);
             }
