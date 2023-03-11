@@ -6,7 +6,7 @@ html, body {
     font-family: Arial;
 }
 
-#loginpage, #registerpage {
+#loginpage, #registrationpage {
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -36,6 +36,24 @@ html, body {
 
 .err-input {
     border-color: red;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.post {
+    border: 1px black solid;
+    display: flex;
+    flex-direction: column;
+}
+
+.post img {
+    max-width: 15%;
+}
+
+.post > h2 {
+    text-decoration: underline;
 }
 
 button {

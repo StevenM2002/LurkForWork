@@ -1,4 +1,4 @@
-import { doFetch } from "../helpers.js";
+import { changeRoute, doFetch } from "../helpers.js";
 
 export const loginPage = () => {
     // Create elems
@@ -8,7 +8,7 @@ export const loginPage = () => {
     const passInput = document.createElement('input');
     const subBtn = document.createElement('button');
     const title = document.createElement('h1');
-    const errMsg = document.createElement('h2');
+    const toRegi = document.createElement('a');
 
     // Add attributes
     div.id = 'loginpage';
@@ -20,28 +20,29 @@ export const loginPage = () => {
     subBtn.type = 'submit';
     subBtn.innerText = 'Login now!';
     form.className = 'centre-form';
-    errMsg.className = 'err-msg';
+    toRegi.href = '/#register';
+    toRegi.innerText = 'Register here!';
 
     // Add event handlers
     const onSubmit = (e) => {
         e.preventDefault();
         doFetch('/auth/login', { 'email': emailInput.value, 'password': passInput.value }, 'POST')
         .then(res => {
-            if (res.error !== undefined) {
-                errMsg.innerText = res.error;
+            if (res.error === undefined) {
+                window.localStorage.setItem('token', res.token);
+                window.localStorage.setItem('userId', res.userId);
+                changeRoute('/#feed');
             } else {
-                errMsg.innerText = '';
+                alert(res.error);
             }
-            return res;
-        })
-        .then(res => console.log(res));
+        });
         passInput.value = '';
     };
     subBtn.addEventListener('click', onSubmit);
 
     // Connect nodes
-    form.append(emailInput, passInput, subBtn);
-    div.append(title, errMsg, form);
+    form.append(emailInput, passInput, subBtn, toRegi);
+    div.append(title, form);
 
     return (div);
 };
