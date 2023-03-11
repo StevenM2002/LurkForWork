@@ -1,9 +1,21 @@
 {
   "users": {
+    "17092": {
+      "email": "steven",
+      "name": "steven",
+      "password": "steven",
+      "watcheeUserIds": {}
+    },
     "65687": {
       "email": "betty@email.com",
       "name": "Betty",
       "password": "cardigan",
+      "watcheeUserIds": {}
+    },
+    "78874": {
+      "email": "test",
+      "name": "test",
+      "password": "test",
       "watcheeUserIds": {}
     },
     "95112": {
@@ -13,6 +25,12 @@
       "watcheeUserIds": {
         "65687": true
       }
+    },
+    "96569": {
+      "email": "hi",
+      "name": "hi",
+      "password": "hi",
+      "watcheeUserIds": {}
     },
     "97467": {
       "email": "james@email.com",
@@ -25,6 +43,13 @@
     }
   },
   "posts": {
+    "387115": {
+      "id": "387115",
+      "creatorId": 96569,
+      "createdAt": "2023-03-11T04:51:37.745Z",
+      "likes": {},
+      "comments": []
+    },
     "865058": {
       "id": "865058",
       "creatorId": 97467,
