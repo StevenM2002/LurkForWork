@@ -56,5 +56,3 @@ export const post = ( { creatorId, createdAt, image, title, start, likes, descri
     div.append(name, postedTime, titleJob, dateStart, imageJob, jobDescTitle, descJob, commentNum, likesNum, children);
     return div;
 };
-
-doFetch('/auth/login', { 'email': emailInput.value, 'password': passInput.value }, 'POST')
