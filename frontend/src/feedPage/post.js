@@ -21,6 +21,8 @@ export const post = ( { creatorId, createdAt, image, title, start, likes, descri
     const descJob = document.createElement('p');
     const commentNum = document.createElement('b');
     const jobDescTitle = document.createElement('h2');
+    const showLikes = document.createElement('button');
+    const usersLiked = document.createElement('b');
     
     const delta = new Date() - new Date(createdAt);
     const deltaStr = `${new Date(delta).getHours()} ${new Date(delta).getMinutes()}`
@@ -36,11 +38,23 @@ export const post = ( { creatorId, createdAt, image, title, start, likes, descri
     descJob.innerText = description;
     commentNum.innerText = `${comments.length} comments`;
     jobDescTitle.innerText = 'Job Description'; 
+    showLikes.innerText = 'Show Likes';
 
-    // Add evnt handlers
-    
+    // Add event handlers
+    const onShowLikes = (e) => {
+        e.preventDefault();
+        if (usersLiked.style.display === "none") {
+            usersLiked.style.display = "flex";
+            usersLiked.innerText = likes;
+        } else {
+            usersLiked.style.display = "none";
+        }
+    }
+    showLikes.addEventListener('click', onShowLikes);
     
     // Connect elems
     div.append(name, postedTime, titleJob, dateStart, imageJob, jobDescTitle, descJob, commentNum, likesNum);
     return div;
 };
+
+doFetch('/auth/login', { 'email': emailInput.value, 'password': passInput.value }, 'POST')
