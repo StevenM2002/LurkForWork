@@ -466,7 +466,7 @@
           "Jobs"
         ],
         "summary": "Get a list of all the job posts",
-        "description": "Returns details of all job posts from users's that the logged in user watches",
+        "description": "Returns the details of the next five job postings, beginning from the 'Start Index', belonging to the users whom the currently logged-in user watches.",
         "parameters": [
           {
             "$ref": "#/components/parameters/PaginationStart"

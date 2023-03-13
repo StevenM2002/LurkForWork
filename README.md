@@ -11,7 +11,7 @@
 
 ## 0. Change Log
 
-N/A
+13/03/2023 - Updated the description of the '/job/feed' endpoint in Swagger docs from 'all jobs' -> 'next 5 jobs'.
 
 ## 1. Background & Motivation
 
