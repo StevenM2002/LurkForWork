@@ -16,12 +16,26 @@ html, body {
     width: clamp(400px, 40vw, 80vw);
 }
 
+#accountpage img {
+    width: 15%;
+}
+
 .centre-form {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     row-gap: 2rem;
+}
+
+.linkedaccount > img {
+    width: 2rem !important;
+    cursor: pointer;
+}
+
+.linkedaccount > a {
+    text-decoration: none;
+    color: black;
 }
 
 .centre-form input {
@@ -54,6 +68,59 @@ html, body {
 
 .post > h2 {
     text-decoration: underline;
+}
+
+.background-modal {
+    z-index: 5;
+    background-color: rgba(218, 218, 218, 0.636);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    cursor: pointer;
+    backdrop-filter: blur(2px);
+}
+
+.modal {
+    z-index: 10;
+    background-color: white;
+    cursor: default;
+    width: 50%;
+    min-height: 30%;
+    max-height: 70%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 10px 8px 10px darkgray;
+    border-radius: 1rem;
+}
+
+.modal > div {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.modal * {
+    z-index: 100;
+}
+
+.modal-circle-btn {
+    z-index: 15;
+    position: absolute;
+    align-self: flex-end;
+    transform: translate(40%, -40%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.red-x-background {
+    background-image: url('../assets/close_red_x.png');
+    background-size: cover;
 }
 
 button {

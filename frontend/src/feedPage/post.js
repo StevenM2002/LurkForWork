@@ -8,11 +8,12 @@
     // Job description
     // Job comments
 
+import { linkedAccount } from "../accountPage/linkedAccount.js";
 import { fetchUser } from "../helpers.js";
 export const post = ( { creatorId, createdAt, image, title, start, likes, description, comments }, children=undefined ) => {
     // Create elems
     const div = document.createElement('div');
-    const name = document.createElement('b');
+    const name = linkedAccount(creatorId);
     const postedTime = document.createElement('b');
     const imageJob = document.createElement('img');
     const titleJob = document.createElement('h1');
@@ -28,7 +29,7 @@ export const post = ( { creatorId, createdAt, image, title, start, likes, descri
     const deltaStr = `${Math.floor(delta / 3600000)} Hours ${Math.floor((delta % 3600000) / 60000)} Minutes ago`
     // Add attr
     div.className = 'post';
-    fetchUser(creatorId).then(res => res.name).then(res => name.innerText = `Posted by: ${res}`);
+    // fetchUser(creatorId).then(res => res.name).then(res => name.innerText = `Posted by: ${res}`);
     postedTime.innerText = `Posted on: ${delta > 86400000 ? new Date(createdAt).toDateString() : deltaStr}`
     imageJob.alt = 'Picture description of job';
     imageJob.src = image;

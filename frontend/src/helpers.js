@@ -51,3 +51,7 @@ export function changeRoute(route) {
     location.href = route;
     window.dispatchEvent(new HashChangeEvent('hashchange'));
 }
+
+export function putWatchFetch(email, isWatch=true) {
+    return doFetch('/user/watch', {'email': email, 'turnon': isWatch}, 'PUT', null, localStorage.getItem('token'));
+}
