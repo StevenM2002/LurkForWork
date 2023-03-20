@@ -1,8 +1,10 @@
+import { accountPage } from './accountPage/accountPage.js';
+import { addJobPage } from './addJobPage/addJobPage.js';
 import { BACKEND_PORT } from './config.js';
+import { editAccountPage } from './editAccountPage/editAccountPage.js';
 import { feedPage } from './feedPage/feedPage.js';
-// A helper you may want to use when uploading new images to the server.
-import { fileToDataUrl } from './helpers.js';
 import { loginPage } from './loginPage/loginPage.js';
+import { notFoundPage } from './notFoundPage/notFoundPage.js';
 import { registrationPage } from './registrationPage/registrationPage.js';
 
 
@@ -10,22 +12,25 @@ const routes = {
     '#login': loginPage,
     '#register': registrationPage,
     '#feed': feedPage,
+    '#account': accountPage,
+    '#edit': editAccountPage,
+    '#add': addJobPage,
 }
 
 // Routing for when user first opens site
 try {
-    document.body.appendChild(routes[location.hash]());
-} catch (TypeError) {
-    alert('This route does not exist');
+    document.body.appendChild(routes[location.hash.split('=')[0]]());
+} catch (e) {
+    document.body.appendChild(notFoundPage());
 }
 
 // Routing for when user changes hash url while they are in application
 const handleHashChange = () => {
     document.body.textContent = '';
     try {
-        document.body.appendChild(routes[location.hash]());
+        document.body.appendChild(routes[location.hash.split('=')[0]]());
     } catch (TypeError) {
-        alert('This route does not exist');
+        document.body.appendChild(notFoundPage());
     }
 }
 window.onhashchange = handleHashChange;
