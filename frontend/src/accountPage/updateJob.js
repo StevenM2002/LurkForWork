@@ -59,6 +59,7 @@ export const updateJob = (id) => {
     subBtn.addEventListener('click', (e) => {
         e.preventDefault();
         let imageData = Promise.resolve(undefined);
+        // If statements below to seperate out exeptions
         if ('date' in data) {
             try {
                 data.date = new Date(data.date).toISOString();
@@ -67,6 +68,7 @@ export const updateJob = (id) => {
                 return;
             }
         }
+        // Check what to save in data
         if ('image' in data) {
             try {
                 imageData = fileToDataUrl(data.image);
