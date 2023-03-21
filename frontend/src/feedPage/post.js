@@ -25,6 +25,7 @@ export const post = ( { creatorId, createdAt, image, title, start, likes, descri
     const likesNum = document.createElement('b');
     const showLikes = document.createElement('button');
     const usersLiked = document.createElement('b');
+    const likeBtn = document.createElement('button');
     const jobDescTitle = document.createElement('h2');
     const descJob = document.createElement('p');
     const commentsNum = document.createElement('b');
@@ -47,21 +48,22 @@ export const post = ( { creatorId, createdAt, image, title, start, likes, descri
     dateStart.innerText = `Starting on: ${new Date(start).toDateString()}`;
     likesNum.innerText = `${likes.length} likes`;
     showLikes.innerText = 'Show Likes';
+    likeBtn.innerText = 'Like';
     jobDescTitle.innerText = 'Job Description'; 
     descJob.innerText = description;
     commentsNum.innerText = `${comments.length} comments`;
     showComments.innerText = 'Show Comments';
  
-    const postChild = (id) => {
-        const postChildDiv = document.createElement('div');
-        postChildDiv.append(likeJob(id, userName));
-        return postChildDiv;
-    }
+    // const postChild = (id) => {
+    //     const postChildDiv = document.createElement('div');
+    //     postChildDiv.append(likeJob(id, userName));
+    //     return postChildDiv;
+    // }
 
-    // Add everything that has to wait for promise to resolve inside promise
-    fetchUser(userId).then(res => {
+    // // Add everything that has to wait for promise to resolve inside promise
+    // fetchUser(userId).then(res => {
 
-    });
+    // });
 
     // Add event handlers
     showLikes.addEventListener('click', (e) => {
@@ -82,6 +84,11 @@ export const post = ( { creatorId, createdAt, image, title, start, likes, descri
         } else {
             usersComments.style.display = "none";
         }
+    });
+
+    likeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        likes.append(userName);
     });
 
     // Connect elems

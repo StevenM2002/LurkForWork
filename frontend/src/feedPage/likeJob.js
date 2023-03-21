@@ -1,13 +1,9 @@
 import { doFetch } from "../helpers.js";
 
-export const likes = ({ id, userName }) => {
-    // Create elems
+export const likes = ({ id }) => {
     const likeBtn = document.createElement('button');
-
-    // Add attr
     likeBtn.innerText = 'Like';
 
-    // Add event handlers
     likeBtn.addEventListener('click', (e) => {
         e.preventDefault();
         doFetch('/job/like', {id, isWatch}, 'PUT', null, localStorage.getItem('token'))
