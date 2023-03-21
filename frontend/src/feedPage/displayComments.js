@@ -1,17 +1,19 @@
 import { linkedAccount } from "../accountPage/linkedAccount.js";
+import { showComments } from "./showComments.js";
 
-export const displayComments = () => {
+export const displayComments = (comments) => {
     const div = document.createElement('div');
     const btn = document.createElement('button');
     btn.innerText = 'Show Comments';
     const content = document.createElement('div');
+    content.append(...comments.map(each => showComments(each)));
     
     btn.addEventListener('click', (e) => {
         e.preventDefault();
         if (content.classList.contains('hidden')) {
-            content.classList.display = flex;
+            content.classList.remove('hidden');
         } else {
-            content.classList.contains('hidden');
+            content.classList.add('hidden');
         }
     });
 
@@ -19,3 +21,4 @@ export const displayComments = () => {
     div.append(content);
     return div;
 }
+

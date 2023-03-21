@@ -5,6 +5,6 @@ export const showComments = ( {userId, comment} ) => {
     const displayComment = document.createElement('p');
     displayComment.innerText = comment;
     
-    showCommmentsDiv.append(linkedAccount(userId), displayComment);
+    showCommentsDiv.append(linkedAccount(userId), displayComment);
     return showCommentsDiv;
 };

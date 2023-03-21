@@ -6,7 +6,6 @@ import { post } from "./post.js";
 import { watchAccByEmail } from "./watchAccByEmail.js";
 import { showLikes } from "./showLikes.js";
 import { likeJob } from "./likeJob.js";
-import { showComments } from "./showComments.js";
 import { displayComments } from "./displayComments.js";
 
 export const feedPage = () => {
@@ -35,28 +34,21 @@ export const feedPage = () => {
     });
     div.append(modal);
 
-    const createPostChild = (likes, id, comments) => {
-        const postChildDiv = document.createElement('div');
-        postChildDiv.append(likeJob(id, !likes.map((each => each.userId.toString())).includes(localStorage.getItem('userId'))), showLikes(likes.map((each => each.userName.toString()))), displayComments(), ...comments.map(each => showComments(each)));
-        return postChildDiv;
-    }
-
     // Add attr
     div.id = 'feedpage';
     header.append(linkedAccount(window.localStorage.getItem('userId')), showModalBtn);
     // Add elems
-    const createPostChild = (id) => {
-        // Add all elements meant to be child to post
-        const postChild = document.createElement('div');
-        postChild.append(addComment(id));
-        return postChild;
+    const createPostChild = (likes, id, comments) => {
+        const postChildDiv = document.createElement('div');
+        postChildDiv.append(likeJob(id, !likes.map((each => each.userId.toString())).includes(localStorage.getItem('userId'))), showLikes(likes.map((each => each.userName.toString()))), addComment(id), displayComments(comments));
+        return postChildDiv;
     }
 
     let numPostsLoaded = 0;
     const fetchFeed = () => {
         doFetch('/job/feed', undefined, 'GET', { 'start': numPostsLoaded }, window.localStorage.getItem('token'))
         .then(res => res.sort(((a, b) => a.createdAt < b.createdAt ? 1 : -1)))
-        .then(res => res.map(ea => post(ea, createPostChild(ea.id))))
+        .then(res => res.map(ea => post(ea, createPostChild(ea.likes, ea.id, ea.comments))))
         .then(res => div.append(...res));
     }
     fetchFeed();
