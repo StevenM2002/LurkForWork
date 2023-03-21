@@ -1,6 +1,7 @@
 import { doFetch } from "../helpers.js";
 
 export const deleteJob = (id) => {
+    // Only button and no div coz why not my add parent div later for css purpose
     const deleteJobBtn = document.createElement('button');
 
     deleteJobBtn.innerText = 'Delete';
