@@ -12,7 +12,7 @@ export const loginPage = () => {
 
     // Add attributes
     div.id = 'loginpage';
-    title.innerText = 'Login to Lurk for work!';
+    title.innerText = 'Login to LurkForWork!';
     emailInput.type = 'text';
     emailInput.placeholder = 'email'
     passInput.type = 'password';
