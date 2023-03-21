@@ -11,7 +11,9 @@
     // Job comments
 
 import { linkedAccount } from "../accountPage/linkedAccount.js";
+import { likeJob } from "./likeJob.js";
 import { fetchUser } from "../helpers.js";
+
 export const post = ( { creatorId, createdAt, image, title, start, likes, description, comments }, children=undefined ) => {
     // Create elems
     const div = document.createElement('div');
@@ -29,7 +31,8 @@ export const post = ( { creatorId, createdAt, image, title, start, likes, descri
     const showComments = document.createElement('button');
     const usersComments = document.createElement('b');
 
-    // TODO Need to fix 
+    // TODO 
+    // Need to fix 
     const delta = new Date() - new Date(createdAt);
     const deltaStr = `${Math.floor(delta / 3600000)} Hours ${Math.floor((delta % 3600000) / 60000)} Minutes ago`
 
@@ -49,6 +52,16 @@ export const post = ( { creatorId, createdAt, image, title, start, likes, descri
     commentsNum.innerText = `${comments.length} comments`;
     showComments.innerText = 'Show Comments';
  
+    const postChild = (id) => {
+        const postChildDiv = document.createElement('div');
+        postChildDiv.append(likeJob(id, userName));
+        return postChildDiv;
+    }
+
+    // Add everything that has to wait for promise to resolve inside promise
+    fetchUser(userId).then(res => {
+
+    });
 
     // Add event handlers
     showLikes.addEventListener('click', (e) => {

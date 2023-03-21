@@ -10,7 +10,7 @@ export const likes = ({ id, userName }) => {
     // Add event handlers
     likeBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        doFetch('/job/like', {id}, 'PUT', null, localStorage.getItem('token'))
+        doFetch('/job/like', {id, isWatch}, 'PUT', null, localStorage.getItem('token'))
         .then(res => {
             if ('error' in res) {
                 alert(res.error);
