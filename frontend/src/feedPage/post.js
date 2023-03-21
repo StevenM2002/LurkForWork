@@ -14,7 +14,7 @@ import { linkedAccount } from "../accountPage/linkedAccount.js";
 import { likeJob } from "./likeJob.js";
 import { fetchUser } from "../helpers.js";
 
-export const post = ( { creatorId, createdAt, image, title, start, likes, description, comments }, children=undefined ) => {
+export const post = ( { id, creatorId, createdAt, image, title, start, likes, description, comments }, children=undefined ) => {
     // Create elems
     const div = document.createElement('div');
     const name = linkedAccount(creatorId);
@@ -23,23 +23,16 @@ export const post = ( { creatorId, createdAt, image, title, start, likes, descri
     const titleJob = document.createElement('h1');
     const dateStart = document.createElement('b');
     const likesNum = document.createElement('b');
-    const showLikes = document.createElement('button');
-    const usersLiked = document.createElement('b');
-    const likeBtn = document.createElement('button');
     const jobDescTitle = document.createElement('h2');
     const descJob = document.createElement('p');
     const commentsNum = document.createElement('b');
-    const showComments = document.createElement('button');
-    const usersComments = document.createElement('b');
 
-    // TODO 
-    // Need to fix 
+    // TODO: NEED TO FIX
     const delta = new Date() - new Date(createdAt);
     const deltaStr = `${Math.floor(delta / 3600000)} Hours ${Math.floor((delta % 3600000) / 60000)} Minutes ago`
 
     // Add attr
     div.className = 'post';
-
     // fetchUser(creatorId).then(res => res.name).then(res => name.innerText = `Posted by: ${res}`);
     postedTime.innerText = `Posted on: ${delta > 86400000 ? new Date(createdAt).toDateString() : deltaStr}`
     imageJob.alt = 'Picture description of job';
@@ -47,49 +40,9 @@ export const post = ( { creatorId, createdAt, image, title, start, likes, descri
     titleJob.innerText = title;
     dateStart.innerText = `Starting on: ${new Date(start).toDateString()}`;
     likesNum.innerText = `${likes.length} likes`;
-    showLikes.innerText = 'Show Likes';
-    likeBtn.innerText = 'Like';
     jobDescTitle.innerText = 'Job Description'; 
     descJob.innerText = description;
     commentsNum.innerText = `${comments.length} comments`;
-    showComments.innerText = 'Show Comments';
- 
-    // const postChild = (id) => {
-    //     const postChildDiv = document.createElement('div');
-    //     postChildDiv.append(likeJob(id, userName));
-    //     return postChildDiv;
-    // }
-
-    // // Add everything that has to wait for promise to resolve inside promise
-    // fetchUser(userId).then(res => {
-
-    // });
-
-    // Add event handlers
-    showLikes.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (usersLiked.style.display === "none") {
-            usersLiked.style.display = "flex";
-            usersLiked.innerText = likes;
-        } else {
-            usersLiked.style.display = "none";
-        }
-    });
-
-    showComments.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (usersComments.style.display === "none") {
-            usersComments.style.display = "flex";
-            usersComments.innerText = comments;
-        } else {
-            usersComments.style.display = "none";
-        }
-    });
-
-    likeBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        likes.append(userName);
-    });
 
     // Connect elems
     div.append(name, postedTime, titleJob, dateStart, imageJob, jobDescTitle, descJob, commentsNum, likesNum);
