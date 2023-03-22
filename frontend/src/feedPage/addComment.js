@@ -16,6 +16,7 @@ export const addComment = (id) => {
                 alert(res.error);
             }
         });
+        commentInput.value = '';
     });
     addCommentDiv.append(commentInput, subBtn);
     return addCommentDiv;
