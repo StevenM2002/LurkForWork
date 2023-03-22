@@ -45,18 +45,26 @@ export const feedPage = () => {
     }
 
     let numPostsLoaded = 0;
+    // Variable for when fetch is firing as scroll can call fetch multiple times before a fetch resolves and append results multiple times prematurely
+    let isFetchFiring = false;
     const fetchFeed = () => {
         doFetch('/job/feed', undefined, 'GET', { 'start': numPostsLoaded }, window.localStorage.getItem('token'))
+        .then(res => {
+            numPostsLoaded += res.length;
+            console.log(numPostsLoaded)
+            return res;
+        })
         .then(res => res.sort(((a, b) => a.createdAt < b.createdAt ? 1 : -1)))
         .then(res => res.map(ea => post(ea, createPostChild(ea.likes, ea.id, ea.comments))))
-        .then(res => div.append(...res));
+        .then(res => div.append(...res))
+        .then(() => isFetchFiring = false);
     }
     fetchFeed();
     // For infinite scroll
     document.addEventListener('scroll', () => {
         // documentElement scrollheight gets height of entire page, minus scrollY which is where the user is currently scrolled to. And if that is within the range of the viewport * 1.3 (as buffer space), then fetch the new content
-        if (document.documentElement.scrollHeight - window.scrollY < window.innerHeight * 1.3) {
-            numPostsLoaded += 5;
+        if (document.documentElement.scrollHeight - window.scrollY < window.innerHeight * 1.3 && !isFetchFiring) {
+            isFetchFiring = true;
             fetchFeed();
         }
     });
