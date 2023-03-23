@@ -6,6 +6,7 @@ export const displayComments = (comments) => {
     const btn = document.createElement('button');
     const content = document.createElement('div');
     btn.innerText = 'Show Comments';
+    btn.className = 'postBtn';
     content.classList.add('hidden');
     content.append(...comments.map(each => showComments(each)));
     

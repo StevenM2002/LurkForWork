@@ -11,9 +11,12 @@ import { addJobLink } from "../addJobPage/addJobLink.js";
 
 export const feedPage = () => {
     // Create elems
+    const body = document.createElement('body');
     const div = document.createElement('div');
     const header = document.createElement('header');
     const showModalBtn = document.createElement('button');
+
+    showModalBtn.className = 'subBtn';
     
     // Modal stuff below
     showModalBtn.innerText = 'Watch a user';
@@ -36,12 +39,26 @@ export const feedPage = () => {
     div.append(modal);
 
     // Add attr
+    body.className = 'background';
     div.id = 'feedpage';
-    header.append(linkedAccount(window.localStorage.getItem('userId')), showModalBtn, addJobLink());
+    const watcherBtnDiv = document.createElement('div');
+    watcherBtnDiv.className = 'watcherBtnDiv';
+    watcherBtnDiv.append(showModalBtn, addJobLink());
+    header.append(linkedAccount(window.localStorage.getItem('userId')), watcherBtnDiv);
     // Add elems
     const createPostChild = ({ likes, id, comments }) => {
         const postChildDiv = document.createElement('div');
-        postChildDiv.append(likeJob(id, !likes.map((each => each.userId.toString())).includes(localStorage.getItem('userId'))), showLikes(likes.map((each => each.userName.toString()))), addComment(id), displayComments(comments));
+        postChildDiv.className = 'postChildDiv';
+        
+        const showDiv = document.createElement('div');
+        showDiv.className = 'interactionsDiv';
+        showDiv.append(showLikes(likes.map(each => each.userName.toString())), displayComments(comments));
+
+        const interactDiv = document.createElement('div');
+        interactDiv.className = 'interactionsDiv';
+        interactDiv.append(likeJob(id, !likes.map(each => each.userId.toString()).includes(localStorage.getItem('userId'))), addComment(id));
+        
+        postChildDiv.append(showDiv, interactDiv);
         return postChildDiv;
     }
 
@@ -122,6 +139,7 @@ export const feedPage = () => {
     });
 
     div.appendChild(header);
-    return div;
+    body.append(div);
+    return body;
 };
 

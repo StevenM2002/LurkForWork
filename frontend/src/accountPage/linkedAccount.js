@@ -7,17 +7,18 @@ export const linkedAccount = (id) => {
     const pfp = document.createElement('img');
     const linkedName = document.createElement('a');
     pfp.alt = 'clickable profile picture that navigates to their acount';
+    pfp.className = 'profilePic';
+    linkedName.className = 'inputLabel';
     div.className = 'linkedaccount';
     linkedName.href = `/#account=${id}`;
 
-    
     pfp.addEventListener('click', () => location.href = `/#account=${id}`);
     fetchUser(id)
     .then(res => 'error' in res ? Promise.reject(res) : res)
     .then(res => {
         linkedName.innerText = res.name;
         pfp.src = res.image === undefined ? default_pfp : res.image;
-        div.append(linkedName, pfp);
+        div.append(pfp, linkedName);
     })
     .catch(e => {
         if (e.error === 'No network detected') {
@@ -30,7 +31,7 @@ export const linkedAccount = (id) => {
                 // Get the cached name and image
                 linkedName.innerText = profileCache[id].name;
                 pfp.src = profileCache[id].image === undefined ? default_pfp : profileCache[id].image;
-                div.append(linkedName, pfp);
+                div.append(pfp, linkedName);
             }
         } else {
             alert(e.error);

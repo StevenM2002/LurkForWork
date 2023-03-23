@@ -7,6 +7,7 @@ export const showLikes = (usernames) => {
 
     noLikesMsg.innerText = 'There are no likes'
     showLikesModal.innerText = 'Show Likes';
+    showLikesModal.className = 'postBtn';
 
     const list = document.createElement('ul');
     const displayUsers = (name) => {

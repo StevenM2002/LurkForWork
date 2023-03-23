@@ -3,10 +3,12 @@ import { doFetch } from "../helpers.js";
 export const addComment = (id) => {
     const addCommentDiv = document.createElement('div');
     const commentInput = document.createElement('input');
+    commentInput.className = 'commentInput';
     const subBtn = document.createElement('button');
 
     commentInput.placeholder = 'Add a comment';
     subBtn.innerText = 'Post comment';
+    subBtn.className = 'postBtn';
 
     subBtn.addEventListener('click', (e) => {
         e.preventDefault();
