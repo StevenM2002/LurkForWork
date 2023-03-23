@@ -1,3 +1,5 @@
+import { addJobLink } from "../addJobPage/addJobLink.js";
+import { linkToFeed } from "../feedPage/linkToFeed.js";
 import { post } from "../feedPage/post.js";
 import { fetchUser } from "../helpers.js";
 import { modalComponent } from "../modalComponent.js/modalComponent.js";
@@ -91,6 +93,7 @@ export const accountPage = () => {
         toEdit.innerText = 'Edit profile';
         header.appendChild(toEdit);
     }
+    header.append(linkToFeed(), addJobLink());
     pageDiv.appendChild(header);
     
     return pageDiv;

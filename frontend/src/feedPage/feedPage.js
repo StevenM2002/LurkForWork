@@ -7,6 +7,7 @@ import { watchAccByEmail } from "./watchAccByEmail.js";
 import { showLikes } from "./showLikes.js";
 import { likeJob } from "./likeJob.js";
 import { displayComments } from "./displayComments.js";
+import { addJobLink } from "../addJobPage/addJobLink.js";
 
 export const feedPage = () => {
     // Create elems
@@ -36,7 +37,7 @@ export const feedPage = () => {
 
     // Add attr
     div.id = 'feedpage';
-    header.append(linkedAccount(window.localStorage.getItem('userId')), showModalBtn);
+    header.append(linkedAccount(window.localStorage.getItem('userId')), showModalBtn, addJobLink());
     // Add elems
     const createPostChild = ({ likes, id, comments }) => {
         const postChildDiv = document.createElement('div');

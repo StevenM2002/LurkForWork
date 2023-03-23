@@ -1,4 +1,5 @@
 import { linkedAccount } from "../accountPage/linkedAccount.js";
+import { linkToFeed } from "../feedPage/linkToFeed.js";
 import { doFetch, fetchUser, fileToDataUrl } from "../helpers.js";
 
 export const editAccountPage = () => {
@@ -105,7 +106,8 @@ export const editAccountPage = () => {
 
     // Connect elems
     form.append(name, email, pfp, pass, cancelBtn, submitBtn);
-    const header = document.createElement('header').appendChild(linkedAccount(localStorage.getItem('userId')));
+    const header = document.createElement('header');
+    header.append(linkedAccount(localStorage.getItem('userId')), linkToFeed())
     pageDiv.append(header, form);
 
     return pageDiv;

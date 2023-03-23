@@ -1,10 +1,14 @@
+import { linkedAccount } from "../accountPage/linkedAccount.js";
+import { linkToFeed } from "../feedPage/linkToFeed.js";
 import { doFetch, fileToDataUrl } from "../helpers.js";
 
 export const addJobPage = () => {
     // Create elems
     const pageDiv = document.createElement('div');
     const form = document.createElement('form');
+    const formDiv = document.createElement('div');
     const subbtn = document.createElement('button');
+    const header = document.createElement('header');
     // For input data
     let data = {};
     const createInput = (name, labelText, type='text') => {
@@ -36,7 +40,7 @@ export const addJobPage = () => {
     const start = createInput('start', 'Enter start date: ', 'date');
     const description = createInput('description', 'Enter job description: ');
     // Add attr and evnts
-    pageDiv.className = 'centre-form';
+    formDiv.className = 'centre-form';
     subbtn.type = 'submit';
     subbtn.innerText = 'Add new job';
     subbtn.addEventListener('click', (e) => {
@@ -73,6 +77,8 @@ export const addJobPage = () => {
     });
 
     form.append(title, image, start, description, subbtn);
-    pageDiv.append(form);
+    formDiv.append(form);
+    header.append(linkedAccount(localStorage.getItem('userId')), linkToFeed());
+    pageDiv.append(header, formDiv);
     return pageDiv;
 };
