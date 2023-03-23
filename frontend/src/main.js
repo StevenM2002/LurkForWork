@@ -7,7 +7,6 @@ import { loginPage } from './loginPage/loginPage.js';
 import { notFoundPage } from './notFoundPage/notFoundPage.js';
 import { registrationPage } from './registrationPage/registrationPage.js';
 
-
 const routes = {
     '#login': loginPage,
     '#register': registrationPage,

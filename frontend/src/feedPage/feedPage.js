@@ -49,16 +49,33 @@ export const feedPage = () => {
     // Save the feed into localstorage for offline use
     const saveFeed = feed => {
         let currFeed = localStorage.getItem('feed');
+        let currProfiles = localStorage.getItem('idprofile');
         // If there are 0 posts loaded, then that means the page is at base state, so reset cached posts to get newest updates
         if (currFeed === null || numPostsLoaded === 0) {
             localStorage.setItem('feed', '[]');
+            localStorage.setItem('idprofile', '{}');
             currFeed = localStorage.getItem('feed');
+            currProfiles = localStorage.getItem('idprofile');
         }
+        
+        
         currFeed = JSON.parse(currFeed);
-        currFeed = [...currFeed, ...feed];
+        currProfiles = JSON.parse(currProfiles);
         // Cache items
+        currFeed = [...currFeed, ...feed];
         localStorage.setItem('feed', JSON.stringify(currFeed));
-        feed.forEach(ea => fetchUser(ea.id).then(res => localStorage.setItem('idprofile', localStorage.getItem('id'))));
+        // Set profile cache for self and then for feed
+        fetchUser(localStorage.getItem('userId'))
+        .then(res => 'error' in res ? Promise.reject(res) : res)
+        .then(res => currProfiles[res.id] = {name: res.name, image: res.image})
+        .catch(e => alert(e.error));
+        feed.forEach(ea => 
+            fetchUser(ea.creatorId)
+            .then(res => 'error' in res ? Promise.reject(res) : res)
+            .then(res => currProfiles[res.id] = {name: res.name, image: res.image})
+            .then(() => localStorage.setItem('idprofile', JSON.stringify(currProfiles)))
+            .catch(e => alert(e.error))
+        );
         // return the feed so it can be kept in the thenable chain
         return feed;
     }

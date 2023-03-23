@@ -21,7 +21,7 @@ export const linkedAccount = (id) => {
     })
     .catch(e => {
         if (e.error === 'No network detected') {
-            const profileCache = localStorage.getItem('idprofile');
+            const profileCache = JSON.parse(localStorage.getItem('idprofile'));
             // If there is no cache
             if (profileCache === null || !(id in profileCache)) {
                 linkedName.innerText = id;
