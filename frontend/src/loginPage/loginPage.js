@@ -42,6 +42,13 @@ export const loginPage = () => {
     // Add event handlers
     const onSubmit = (e) => {
         e.preventDefault();
+        if (emailInput.value.length == 0) {
+            alert('Please enter an email address');
+            return;
+        } else if (passInput.value.length == 0) {
+            alert('Please enter a password');
+            return;
+        }
         doFetch('/auth/login', { 'email': emailInput.value, 'password': passInput.value }, 'POST')
         .then(res => {
             if (res.error === undefined) {

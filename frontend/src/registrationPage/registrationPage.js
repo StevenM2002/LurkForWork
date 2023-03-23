@@ -55,7 +55,16 @@ export const registrationPage = () => {
     // Add event handlers
     subBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        if (passInput.value !== confPassInput.value) {
+        if (nameInput.value.length == 0) {
+            alert('Please enter a name');
+            return;
+        } else if (emailInput.value.length == 0) {
+            alert('Please enter an email address');
+            return;
+        } else if (passInput.value.length == 0) {
+            alert('Please enter a password');
+            return;
+        } else if (passInput.value !== confPassInput.value) {
             alert('Passwords do not match');
             return;
         }
