@@ -40,7 +40,7 @@ export function doFetch(endpoint, body, method, urlsearchparams=null, token=unde
             Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(body)
-    }).then(res => res.json()).catch(e => e);
+    }).then(res => res.json()).catch(e => e instanceof TypeError ? {error: 'No network detected'} : e);
 }
 
 export function fetchUser(userId) {
