@@ -52,11 +52,11 @@ export const feedPage = () => {
         
         const showDiv = document.createElement('div');
         showDiv.className = 'interactionsDiv';
-        showDiv.append(showLikes(likes.map(each => each.userName.toString())), displayComments(comments));
+        showDiv.append(likeJob(id, !likes.map(each => each.userId.toString()).includes(localStorage.getItem('userId'))), showLikes(likes.map(each => each.userName.toString())), displayComments(comments));
 
         const interactDiv = document.createElement('div');
         interactDiv.className = 'interactionsDiv';
-        interactDiv.append(likeJob(id, !likes.map(each => each.userId.toString()).includes(localStorage.getItem('userId'))), addComment(id));
+        interactDiv.append(addComment(id));
         
         postChildDiv.append(showDiv, interactDiv);
         return postChildDiv;
