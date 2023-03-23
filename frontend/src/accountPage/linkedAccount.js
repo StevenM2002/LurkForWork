@@ -2,7 +2,7 @@ import { fetchUser } from "../helpers.js";
 
 const default_pfp = '../../assets/default_pfp.svg';
 
-export const linkedAccount = (id, name=undefined, profileImage=undefined) => {
+export const linkedAccount = (id) => {
     const div = document.createElement('div');
     const pfp = document.createElement('img');
     const linkedName = document.createElement('a');
@@ -21,7 +21,17 @@ export const linkedAccount = (id, name=undefined, profileImage=undefined) => {
     })
     .catch(e => {
         if (e.error === 'No network detected') {
-            linkedName.innerText = name === undefined ? id.toString() : name;
+            const profileCache = localStorage.getItem('idprofile');
+            // If there is no cache
+            if (profileCache === null || !(id in profileCache)) {
+                linkedName.innerText = id;
+                pfp.src = default_pfp;
+            } else {
+                // Get the cached name and image
+                linkedName.innerText = profileCache[id].name;
+                pfp.src = profileCache[id].image === undefined ? default_pfp : profileCache[id].image;
+                div.append(linkedName, pfp);
+            }
         } else {
             alert(e.error);
         }

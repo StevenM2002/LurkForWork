@@ -1,5 +1,5 @@
 import { linkedAccount } from "../accountPage/linkedAccount.js";
-import { doFetch } from "../helpers.js";
+import { doFetch, fetchUser } from "../helpers.js";
 import { modalComponent } from "../modalComponent.js/modalComponent.js";
 import { addComment } from "./addComment.js";
 import { post } from "./post.js";
@@ -58,6 +58,7 @@ export const feedPage = () => {
         currFeed = [...currFeed, ...feed];
         // Cache items
         localStorage.setItem('feed', JSON.stringify(currFeed));
+        feed.forEach(ea => fetchUser(ea.id).then(res => localStorage.setItem('idprofile', localStorage.getItem('id'))));
         // return the feed so it can be kept in the thenable chain
         return feed;
     }
