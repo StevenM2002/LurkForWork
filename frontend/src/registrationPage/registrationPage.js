@@ -2,7 +2,6 @@ import { doFetch } from "../helpers.js";
 
 export const registrationPage = () => {
     // Create elems
-    const body = document.createElement('body')
     const div = document.createElement('div');
     const nameDiv = document.createElement('div');
     const nameLabel = document.createElement('label');
@@ -19,38 +18,37 @@ export const registrationPage = () => {
     const subBtn = document.createElement('button');
     const form = document.createElement('form');
     const title = document.createElement('h1');
-    // const errMsg = document.createElement('h2');
     const toLogin = document.createElement('a');
 
     // Add attr
-    body.className = 'background';
-    nameDiv.className = 'inputDiv';
+    document.body.classList.add('background');
+    nameDiv.classList.add('inputDiv');
     nameLabel.innerText = 'Name';
-    nameLabel.className = 'inputLabel';
+    nameLabel.classList.add('inputLabel');
     nameInput.placeholder = 'Enter name';
-    emailDiv.className = 'inputDiv';
+    emailDiv.classList.add('inputDiv');
     emailLabel.innerText = 'Email Address';
-    emailLabel.className = 'inputLabel';
+    emailLabel.classList.add('inputLabel');
     emailInput.placeholder = 'Example@email.com';
-    passDiv.className = 'inputDiv';
+    passDiv.classList.add('inputDiv');
     passLabel.innerText = 'Password';
-    passLabel.className = 'inputLabel';
+    passLabel.classList.add('inputLabel');
     passInput.type = 'password';
     passInput.placeholder = 'Enter password';
-    confPassDiv.className = 'inputDiv';
+    confPassDiv.classList.add('inputDiv');
     confPassLabel.innerText = 'Confirm Password';
-    confPassLabel.className = 'inputLabel';
+    confPassLabel.classList.add('inputLabel');
     confPassInput.type = 'password';
     confPassInput.placeholder = 'Confirm password';
     subBtn.type = 'submit';
     subBtn.textContent = 'Sign up!';
-    subBtn.className = 'subBtn';
+    subBtn.classList.add('subBtn');
     div.id = 'registrationpage';
-    form.className = 'centre-form';
+    form.classList.add('centre-form');
     title.innerText = 'Register to LurkForWork!';
     toLogin.href = '/#login';
     toLogin.innerText = 'Login here!';
-    toLogin.className = 'linkBtn';
+    toLogin.classList.add('linkBtn');
 
     // Add event handlers
     subBtn.addEventListener('click', (e) => {
@@ -87,7 +85,6 @@ export const registrationPage = () => {
     passDiv.append(passLabel, passInput);
     confPassDiv.append(confPassLabel, confPassInput);
     form.append(nameDiv, emailDiv, passDiv, confPassDiv, subBtn, toLogin);
-    div.append(title, form); /* removed errMdg from here */
-    body.append(div);
-    return body;
+    div.append(title, form); 
+    return div;
 };

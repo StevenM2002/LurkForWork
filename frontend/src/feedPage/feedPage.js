@@ -11,12 +11,12 @@ import { addJobLink } from "../addJobPage/addJobLink.js";
 
 export const feedPage = () => {
     // Create elems
-    const body = document.createElement('body');
+    document.body.classList.add('background');
     const div = document.createElement('div');
     const header = document.createElement('header');
     const showModalBtn = document.createElement('button');
 
-    showModalBtn.className = 'subBtn';
+    showModalBtn.classList.add('subBtn');
     
     // Modal stuff below
     showModalBtn.innerText = 'Watch a user';
@@ -39,7 +39,6 @@ export const feedPage = () => {
     div.append(modal);
 
     // Add attr
-    body.className = 'background';
     div.id = 'feedpage';
     const watcherBtnDiv = document.createElement('div');
     watcherBtnDiv.className = 'watcherBtnDiv';
@@ -49,16 +48,7 @@ export const feedPage = () => {
     const createPostChild = ({ likes, id, comments }) => {
         const postChildDiv = document.createElement('div');
         postChildDiv.className = 'postChildDiv';
-        
-        const showDiv = document.createElement('div');
-        showDiv.className = 'interactionsDiv';
-        showDiv.append(likeJob(id, !likes.map(each => each.userId.toString()).includes(localStorage.getItem('userId'))), showLikes(likes.map(each => each.userName.toString())), displayComments(comments));
-
-        const interactDiv = document.createElement('div');
-        interactDiv.className = 'interactionsDiv';
-        interactDiv.append(addComment(id));
-        
-        postChildDiv.append(showDiv, interactDiv);
+        postChildDiv.append(showLikes(likes.map(each => each.userName.toString())), likeJob(id, !likes.map(each => each.userId.toString()).includes(localStorage.getItem('userId'))), displayComments(comments), addComment(id));
         return postChildDiv;
     }
 
@@ -139,7 +129,6 @@ export const feedPage = () => {
     });
 
     div.appendChild(header);
-    body.append(div);
-    return body;
+    return div;
 };
 

@@ -2,7 +2,6 @@ import { changeRoute, doFetch } from "../helpers.js";
 
 export const loginPage = () => {
     // Create elems
-    const body = document.createElement('body')
     const div = document.createElement('div');
     const form = document.createElement('form');
     const emailDiv = document.createElement('div');
@@ -16,28 +15,28 @@ export const loginPage = () => {
     const toRegi = document.createElement('a');
 
     // Add attributes
-    body.className = 'background';
+    document.body.classList.add('background');
     div.id = 'loginpage';
     title.innerText = 'Login to LurkForWork!';
-    emailDiv.className = 'inputDiv';
+    emailDiv.classList.add('inputDiv');
     emailLabel.innerText = 'Email Address';
-    emailLabel.className = 'inputLabel';
+    emailLabel.classList.add('inputLabel');
     emailInput.type = 'text';
     emailInput.placeholder = 'Example@email.com';
-    emailInput.className = 'username';
-    passDiv.className = 'inputDiv';
+    emailInput.classList.add('username');
+    passDiv.classList.add('inputDiv');
     passLabel.innerText = 'Password';
-    passLabel.className = 'inputLabel';
+    passLabel.classList.add('inputLabel');
     passInput.type = 'password';
     passInput.placeholder = 'Enter password';
-    passInput.className = 'password';
+    passInput.classList.add('password');
     subBtn.type = 'submit';
     subBtn.innerText = 'Login now!';
-    subBtn.className = 'subBtn';
-    form.className = 'centre-form';
+    subBtn.classList.add('subBtn');
+    form.classList.add('centre-form');
     toRegi.href = '/#register';
     toRegi.innerText = 'Register here!';
-    toRegi.className = 'linkBtn';
+    toRegi.classList.add('linkBtn');
 
     // Add event handlers
     const onSubmit = (e) => {
@@ -68,7 +67,6 @@ export const loginPage = () => {
     passDiv.append(passLabel, passInput);
     form.append(emailDiv, passDiv, subBtn, toRegi);
     div.append(title, form);
-    body.append(div);
 
-    return (body);
+    return (div);
 };

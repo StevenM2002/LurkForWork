@@ -7,7 +7,7 @@ export const addComment = (id) => {
     const subBtn = document.createElement('button');
 
     commentInput.placeholder = 'Add a comment';
-    subBtn.innerText = 'Post comment';
+    subBtn.innerText = 'Post Comment';
     subBtn.className = 'postBtn';
 
     subBtn.addEventListener('click', (e) => {
