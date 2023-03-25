@@ -59,24 +59,32 @@ export const feedPage = () => {
             currProfiles = localStorage.getItem('idprofile');
         }
         
-        
         currFeed = JSON.parse(currFeed);
         currProfiles = JSON.parse(currProfiles);
         // Cache items
         currFeed = [...currFeed, ...feed];
-        localStorage.setItem('feed', JSON.stringify(currFeed));
-        // Set profile cache for self and then for feed
-        fetchUser(localStorage.getItem('userId'))
-        .then(res => 'error' in res ? Promise.reject(res) : res)
-        .then(res => currProfiles[res.id] = {name: res.name, image: res.image})
-        .catch(e => alert(e.error));
-        feed.forEach(ea => 
-            fetchUser(ea.creatorId)
+        try {
+            localStorage.setItem('feed', JSON.stringify(currFeed));
+            // Set profile cache for self and then for feed
+            fetchUser(localStorage.getItem('userId'))
             .then(res => 'error' in res ? Promise.reject(res) : res)
             .then(res => currProfiles[res.id] = {name: res.name, image: res.image})
-            .then(() => localStorage.setItem('idprofile', JSON.stringify(currProfiles)))
-            .catch(e => alert(e.error))
-        );
+            .catch(e => alert(e.error));
+            feed.forEach(ea => 
+                fetchUser(ea.creatorId)
+                .then(res => 'error' in res ? Promise.reject(res) : res)
+                .then(res => currProfiles[res.id] = {name: res.name, image: res.image})
+                .then(() => localStorage.setItem('idprofile', JSON.stringify(currProfiles)))
+                .catch(e => alert(e.error))
+            );
+        } catch (e) {
+            if (e.name === "QuotaExceededError") {
+                alert('Local storage space is full for offline feed');
+            } else {
+                // Dont show user any other err as this is for saving feed, so other errors will be shown appropriately by other fetch calls
+                console.log(e);
+            }
+        }
         // return the feed so it can be kept in the thenable chain
         return feed;
     }
@@ -104,6 +112,7 @@ export const feedPage = () => {
         .then(res => div.append(...res))
         .then(() => isFetchFiring = false)
         .catch(res => {
+            console.log(res);
             if (res.error === 'No network detected') {
                 getOfflineFeed();
             } else {
