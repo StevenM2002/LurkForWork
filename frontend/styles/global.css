@@ -8,7 +8,7 @@ html, body {
 header {
     background-color: #2A3467;
     color: white;
-    border-bottom: 5px #65E8F0 solid;
+    border-bottom: 5px #a1efff solid;
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -17,9 +17,16 @@ header {
     padding-top: 1rem;
 }
 
+button {
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    padding: .5rem 1rem;
+}
+
 h1 {
     margin: 0;
-    padding: 1rem;
+    padding: 1rem 1rem 2rem 1rem;
     color: #2A3467;
     font-size: 40px;
     display: flex;
@@ -30,11 +37,23 @@ h1 {
 
 h2 {
     margin: 0;
+    padding: 1rem 1rem 0rem 1rem;
+    color: #2A3467;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: clamp(400px, 40vw, 80vw);
+}
+
+h3 {
+    margin: 0;
     padding: 0;
     font-size: x-large;
     color: #555555;
 }
 
+/* Pages */
 #loginpage, #registrationpage {
     margin: 0;
     display: flex;
@@ -57,7 +76,7 @@ h2 {
 }
 
 #feedpage {
-    background-image: linear-gradient(#65E8F0, #656BF0);
+    background-image: linear-gradient(#a1efff, #a5aafc);
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -70,48 +89,28 @@ h2 {
     background-size: cover
 }
 
+.div-horizontal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.div-vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+}
+
+/* Form */
 .centre-form {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     row-gap: 1.5rem;
-}
-
-.accountDiv {
-    border-radius: 1rem 1rem 0rem 0rem;
-    width: clamp(400px, 40vw, 80vw);
-    background-color: #2A3467;
-    color: white;
-
-}
-
-.watcherBtnDiv {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    row-gap: 1.5rem;
-    padding-bottom: 1.5rem;
-
-}
-
-.linkedaccount {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-}
-
-
-.linkedaccount > img {
-    width: 2rem !important;
-    cursor: pointer;
-}
-
-.linkedaccount > a {
-    text-decoration: none;
-    color: white;
 }
 
 .centre-form input {
@@ -126,18 +125,11 @@ h2 {
     align-items: left;
 }
 
-.err-msg {
-    color: red;
-}
-
-.err-input {
-    border-color: red;
-}
-
 .hidden {
     display: none !important;
 }
 
+/* Post */
 .post {
     border-bottom: 1px #CDCDCD solid;
     border-radius: 1rem;
@@ -146,9 +138,21 @@ h2 {
     align-items: center;
     justify-content: center;
     background-color: white;
-    width: clamp(400px, 40vw, 80vw);
+    width: clamp(400px, 50vw, 80vw);
     row-gap: 1rem;
     margin: 10px;
+}
+
+.post img {
+    max-width: 15%;
+}
+
+.postAccountDiv {
+    border-radius: 1rem 1rem 0rem 0rem;
+    width: clamp(400px, 50vw, 80vw);
+    background-color: #2A3467;
+    color: white;
+
 }
 
 .postChildDiv {
@@ -160,31 +164,7 @@ h2 {
     padding: 1rem;
 }
 
-.interactionsDiv {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-.interactionsDiv button {
-    margin: 0 0.1rem 0 0.1rem;
-}
-
-.post img {
-    max-width: 15%;
-}
-
-.imgJob {
-    min-width: 200px;
-    max-width: 15%;
-}
-
-.profilePic {
-    min-width: 50px;
-    max-width: 10%;
-}
-
+/* Modal */
 .background-modal {
     z-index: 5;
     background-color: rgba(218, 218, 218, 0.636);
@@ -195,6 +175,7 @@ h2 {
     width: 100%;
     height: 100%;
     top: 0;
+    left: 0;
     cursor: pointer;
     backdrop-filter: blur(2px);
 }
@@ -238,26 +219,30 @@ h2 {
     background-size: cover;
 }
 
-button {
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    padding: .5rem 1rem;
+/* Account */
+.linkedaccount {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
 }
 
-.subBtn {
-    background-color: #6595F1;
-    width: 230px;
-    text-decoration: none;
-    border: none;
-    border-radius: 50px;
+.linkedaccount > img {
+    width: 2rem !important;
     cursor: pointer;
-    padding: 0.7rem 3rem;
-    font-size: medium;
-    font-weight: bold;
+}
+
+.linkedaccount > a {
+    text-decoration: none;
     color: white;
 }
 
+.profilePic {
+    min-width: 50px;
+    max-width: 10%;
+}
+
+/* Login and Registration - Inputs and Labels */
 .inputDiv {
     display: flex;
     flex-direction: column;
@@ -273,17 +258,7 @@ button {
     font-weight: bold;
 }
 
-.label {
-    padding-bottom: 0.1rem;
-    color: black;
-    font-weight: bold;
-}
-
-.linkBtn {
-    color: #6595F1;
-    font-weight: bold;
-}
-
+/* Remove hyperlinks for page links */
 a:link {
     text-decoration: none;
 }
@@ -300,55 +275,85 @@ a:active {
     text-decoration: none;
 }
 
-.numbersDiv {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: clamp(400px, 40vw, 80vw);
+.linkBtn {
+    margin-bottom: 1rem;
+    color: #6595F1;
+    font-weight: bold;
 }
 
-.numbersDiv b {
-    padding: 0 3rem 0 3rem;
+/* Buttons */
+.btn, .likeBtn, .unlikeBtn, .blueStyle, .blueBtn, .dateStyle, .whiteBtn, .subBtn {
+    padding: 0.7rem 1rem;
+    margin: 1rem 0.5rem;
+    border-radius: 30px;
+    text-align: center;
 }
 
 .likeBtn {
+    width: 100px;
     background-color: #CC3B45;
-    width: 60;
     text-decoration: none;
     border: none;
-    border-radius: 30px;
     cursor: pointer;
-    padding: 0.7rem 1rem;
     font-size: small;
     font-weight: bold;
     color: white;
 }
 
 .unlikeBtn {
+    width: 100px;
     background-color: white;
-    width: 60;
     text-decoration: none;
-    border: 2px #CC3B45 solid;
-    border-radius: 50px;
+    border: 3px #CC3B45 solid;
     cursor: pointer;
-    padding: 0.7rem 1rem;
     font-size: small;
     font-weight: bold;
     color: #CC3B45;
 }
 
-.postBtn {
+.blueBtn, .dateStyle {
     background-color: #2A3467;
-    width: 60;
     text-decoration: none;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    padding: 0.7rem 1rem;
+    border: 3px #2A3467 solid;
     font-size: small;
     font-weight: bold;
     color: white;
+}
+
+.blueBtn {
+    width: 150px;
+    cursor: pointer;
+}
+
+.dateStyle {
+    width: 300px;
+    font-size: medium;
+}
+
+.whiteBtn {
+    background-color: white;
+    text-decoration: none;
+    border: 3px #2A3467 solid;
+    font-size: small;
+    font-weight: bold;
+    color:#2A3467;
+}
+
+.subBtn {
+    width: 180px;
+    background-color: #6595F1;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-size: medium;
+    font-weight: bold;
+    color: white;
+}
+
+/* Other Post Elements */
+.imgJob {
+    min-width: 200px;
+    max-width: 15%;
 }
 
 .commentInput {
@@ -359,15 +364,7 @@ a:active {
     height: 25px;
 }
 
-.dateStyle {
-    background-color: white;
-    width: 300;
-    text-decoration: none;
-    border: 2px #2A3467 solid;
-    border-radius: 50px;
-    cursor: pointer;
-    padding: 0.7rem 1rem;
-    font-size: medium;
-    font-weight: bold;
-    color: #2A3467;
+/* Customised divs */
+.headerDivHor {
+    width: clamp(100px, 10vw, 300px);
 }

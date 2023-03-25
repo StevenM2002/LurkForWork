@@ -21,9 +21,9 @@ export const post = ( { id, creatorId, createdAt, image, title, start, likes, de
     const name = linkedAccount(creatorId);
     const postedTime = document.createElement('b');
     const imageJob = document.createElement('img');
-    const titleJob = document.createElement('h1');
+    const titleJob = document.createElement('h2');
     const dateStart = document.createElement('b');
-    const jobDescTitle = document.createElement('h2');
+    const jobDescTitle = document.createElement('h3');
     const descJob = document.createElement('p');
     const interactionsDiv = document.createElement('div');
     const likesNum = document.createElement('b');
@@ -34,21 +34,20 @@ export const post = ( { id, creatorId, createdAt, image, title, start, likes, de
     const deltaStr = `${Math.floor(delta / 3600000)} Hours ${Math.floor((delta % 3600000) / 60000)} Minutes ago`
 
     // Add attr
-    div.className = 'post';
+    div.classList.add('post');
     // fetchUser(creatorId).then(res => res.name).then(res => name.innerText = `Posted by: ${res}`);
-    accountDiv.className = 'accountDiv';
+    accountDiv.classList.add('postAccountDiv');
     accountDiv.append(name);
     postedTime.innerText = `Posted on: ${delta > 86400000 ? new Date(createdAt).toDateString() : deltaStr}`;
-    postedTime.className = 'label';
     imageJob.alt = 'Picture description of job';
     imageJob.src = image;
-    imageJob.className = 'imgJob';
+    imageJob.classList.add('imgJob');
     titleJob.innerText = title;
     dateStart.innerText = `Starting on: ${new Date(start).toDateString()}`;
-    dateStart.className = 'dateStyle';
+    dateStart.classList.add('dateStyle');
     jobDescTitle.innerText = 'Job Description'; 
     descJob.innerText = description;
-    interactionsDiv.className = 'numbersDiv';
+    interactionsDiv.classList.add('div-horizontal');
     likesNum.innerText = `${likes.length} likes`;
     commentsNum.innerText = `${comments.length} comments`;
     interactionsDiv.append(likesNum, commentsNum);

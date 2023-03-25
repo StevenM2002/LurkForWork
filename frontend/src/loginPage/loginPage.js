@@ -23,13 +23,11 @@ export const loginPage = () => {
     emailLabel.classList.add('inputLabel');
     emailInput.type = 'text';
     emailInput.placeholder = 'Example@email.com';
-    emailInput.classList.add('username');
     passDiv.classList.add('inputDiv');
     passLabel.innerText = 'Password';
     passLabel.classList.add('inputLabel');
     passInput.type = 'password';
     passInput.placeholder = 'Enter password';
-    passInput.classList.add('password');
     subBtn.type = 'submit';
     subBtn.innerText = 'Login now!';
     subBtn.classList.add('subBtn');

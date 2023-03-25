@@ -40,15 +40,29 @@ export const feedPage = () => {
 
     // Add attr
     div.id = 'feedpage';
-    const watcherBtnDiv = document.createElement('div');
-    watcherBtnDiv.className = 'watcherBtnDiv';
-    watcherBtnDiv.append(showModalBtn, addJobLink());
-    header.append(linkedAccount(window.localStorage.getItem('userId')), watcherBtnDiv);
+    const accountDiv = document.createElement('div');
+    accountDiv.classList.add('div-horizontal');
+    accountDiv.classList.add('headerDivHor');
+
+    const div1 = document.createElement('div');
+    div1.classList.add('div-vertical');
+
+    const div2 = document.createElement('div');
+    div2.classList.add('div-vertical');
+
+    div1.append(linkedAccount(window.localStorage.getItem('userId')));
+    div2.append(showModalBtn, addJobLink());
+    accountDiv.append(div1, div2);
+    header.append(accountDiv);
+
     // Add elems
     const createPostChild = ({ likes, id, comments }) => {
         const postChildDiv = document.createElement('div');
-        postChildDiv.className = 'postChildDiv';
-        postChildDiv.append(showLikes(likes.map(each => each.userName.toString())), likeJob(id, !likes.map(each => each.userId.toString()).includes(localStorage.getItem('userId'))), displayComments(comments), addComment(id));
+        postChildDiv.classList.add('postChildDiv');
+        const likesDiv = document.createElement('div');
+        likesDiv.classList.add('div-horizontal');
+        likesDiv.append(likeJob(id, !likes.map(each => each.userId.toString()).includes(localStorage.getItem('userId'))), showLikes(likes.map(each => each.userName.toString())));
+        postChildDiv.append(likesDiv, addComment(id), displayComments(comments));
         return postChildDiv;
     }
 
