@@ -38,7 +38,7 @@ export const feedPage = () => {
     });
     div.append(modal);
 
-    // Add attr
+    // Add header attributes
     div.id = 'feedpage';
     const accountDiv = document.createElement('div');
     accountDiv.classList.add('div-horizontal');
@@ -46,9 +46,11 @@ export const feedPage = () => {
 
     const div1 = document.createElement('div');
     div1.classList.add('div-vertical');
+    div1.classList.add('headerDivVer');
 
     const div2 = document.createElement('div');
     div2.classList.add('div-vertical');
+    div2.classList.add('headerDivVer');
 
     div1.append(linkedAccount(window.localStorage.getItem('userId')));
     div2.append(showModalBtn, addJobLink());

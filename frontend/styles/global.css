@@ -24,6 +24,19 @@ button {
     padding: .5rem 1rem;
 }
 
+a {
+    padding: 0;
+    margin: 0;
+}
+
+input {
+    padding: .6rem 1rem;
+    border-radius: 2rem;
+    border: 1px solid #777777;
+    width: 300px;
+    height: 25px;
+}
+
 h1 {
     margin: 0;
     padding: 1rem 1rem 2rem 1rem;
@@ -54,7 +67,7 @@ h3 {
 }
 
 /* Pages */
-#loginpage, #registrationpage {
+#loginpage, #registrationpage, .formLayout {
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -75,7 +88,7 @@ h3 {
     width: 15%;
 }
 
-#feedpage {
+#feedpage, #accountpage {
     background-image: linear-gradient(#a1efff, #a5aafc);
     background-size: cover;
     display: flex;
@@ -85,7 +98,7 @@ h3 {
 }
 
 .background {
-    background-image: linear-gradient(#65E8F0, #656BF0);
+    background-image: linear-gradient(#a1efff, #a5aafc);
     background-size: cover
 }
 
@@ -101,7 +114,6 @@ h3 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 1rem;
 }
 
 /* Form */
@@ -111,14 +123,6 @@ h3 {
     align-items: center;
     justify-content: center;
     row-gap: 1.5rem;
-}
-
-.centre-form input {
-    padding: .6rem 1rem;
-    border-radius: 2rem;
-    border: 1px solid #777777;
-    width: 300px;
-    height: 25px;
 }
 
 .centre-form label {
@@ -139,8 +143,8 @@ h3 {
     justify-content: center;
     background-color: white;
     width: clamp(400px, 50vw, 80vw);
-    row-gap: 1rem;
-    margin: 10px;
+    row-gap: 0.5rem;
+    margin: 1rem;
 }
 
 .post img {
@@ -219,12 +223,66 @@ h3 {
     background-size: cover;
 }
 
+/* AddJob Page */
+.formElement {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.formElement input {
+    width: clamp(340px, 15vw, 50vw);
+}
+
+/* Account Page */
+.accountDiv {
+    background-color: white;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    width: 400px;
+}
+
+.accountDiv .linkedaccount > a {
+    color: black;
+}
+
+.accountDiv > img {
+    min-width: 250px;
+}
+
+.accountDiv > p {
+    font-size: medium;
+    font-weight: bold;
+    color: #333333;
+}
+
+.watchedByDiv .linkedaccount {
+    justify-content: left;
+}
+
+.watchedByDiv {
+    padding: 1.5rem 1.5rem 0 1.5rem;
+    border-top: 1px #CCCCCC solid;
+    width: 350px;
+    justify-content: center;
+    text-align: center;
+    color: #2A3467;
+}
+
+
 /* Account */
 .linkedaccount {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 1rem;
+    margin: 1.5rem 2rem;
 }
 
 .linkedaccount > img {
@@ -276,38 +334,38 @@ a:active {
 }
 
 .linkBtn {
-    margin-bottom: 1rem;
+    margin: 1rem;
     color: #6595F1;
+    font-size: medium;
     font-weight: bold;
+    align-items: center;
 }
 
 /* Buttons */
-.btn, .likeBtn, .unlikeBtn, .blueStyle, .blueBtn, .dateStyle, .whiteBtn, .subBtn {
-    padding: 0.7rem 1rem;
-    margin: 1rem 0.5rem;
+.btn, .likeBtn, .unlikeBtn, .blueStyle, .blueBtn, .dateStyle, .whiteBtn, .subBtn, .redBtn {
+    width: 150px;
+    padding: 0.7rem 0 0.7rem 0;
+    margin: 0.5rem 1rem 1rem 1rem;
     border-radius: 30px;
     text-align: center;
-}
-
-.likeBtn {
-    width: 100px;
-    background-color: #CC3B45;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
     font-size: small;
     font-weight: bold;
+}
+
+.redBtn, .likeBtn {
+    margin-bottom: 1rem;
+    background-color: #CC3B45;
+    border: 3px #CC3B45 solid;
+    text-decoration: none;
+    cursor: pointer;
     color: white;
 }
 
 .unlikeBtn {
-    width: 100px;
     background-color: white;
     text-decoration: none;
     border: 3px #CC3B45 solid;
     cursor: pointer;
-    font-size: small;
-    font-weight: bold;
     color: #CC3B45;
 }
 
@@ -315,8 +373,6 @@ a:active {
     background-color: #2A3467;
     text-decoration: none;
     border: 3px #2A3467 solid;
-    font-size: small;
-    font-weight: bold;
     color: white;
 }
 
@@ -334,19 +390,14 @@ a:active {
     background-color: white;
     text-decoration: none;
     border: 3px #2A3467 solid;
-    font-size: small;
-    font-weight: bold;
     color:#2A3467;
 }
 
 .subBtn {
-    width: 180px;
     background-color: #6595F1;
     text-decoration: none;
     border: none;
     cursor: pointer;
-    font-size: medium;
-    font-weight: bold;
     color: white;
 }
 
@@ -366,5 +417,5 @@ a:active {
 
 /* Customised divs */
 .headerDivHor {
-    width: clamp(100px, 10vw, 300px);
+    width: clamp(400px, 50vw, 80vw);
 }

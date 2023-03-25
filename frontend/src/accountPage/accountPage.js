@@ -21,19 +21,22 @@ export const accountPage = () => {
     // Create elems
     const pageDiv = document.createElement('div');
     const email = document.createElement('p');
-    const name = document.createElement('b');
+    const name = document.createElement('h2');
     const image = document.createElement('img');
     const jobsDiv = document.createElement('div');
     const watchedByDiv = document.createElement('div');
     const watchedByNum = document.createElement('p');
     const header = document.createElement('header');
     pageDiv.id = 'accountpage';
+    header.classList.add('div-horizontal');
+    watchedByDiv.classList.add('watchedByDiv');
     
     // Create update job modal
     const createUpdateJob = (id) => {
         const updateJobDiv = document.createElement('div');
         const editJobBtn = document.createElement('button');
-        editJobBtn.innerText = 'Edit job';
+        editJobBtn.innerText = 'Edit Job';
+        editJobBtn.classList.add('subBtn');
         const [updateJobComponent, cancelUpdateCallback] = updateJob(id);
         const cancelModalCallback = () => {
             cancelUpdateCallback();
@@ -55,6 +58,9 @@ export const accountPage = () => {
         return postChildDiv;
     }
 
+    const accountDiv = document.createElement('div');
+    accountDiv.classList.add('div-vertical');
+    accountDiv.classList.add('accountDiv');
     // Add everything that has to wait for promise to resolve inside promise
     fetchUser(userId).then(res => {
         if (res === undefined || res.error !== undefined) {
@@ -73,12 +79,13 @@ export const accountPage = () => {
             name.innerText = res.name;
             image.src = res.image === undefined ? defaultPicture : res.image;
             image.alt = 'Profile picture';
-            watchedByNum.innerText = `Watched by: ${res.watcheeUserIds.length} users`;
+            watchedByNum.innerText = `Watched by ${res.watcheeUserIds.length} users`;
             // Connect elems
             watchedByDiv.appendChild(watchedByNum);
             watchedByDiv.append(...res.watcheeUserIds.map(ea => linkedAccount(ea)));
             jobsDiv.append(...res.jobs.sort((a, b) => a.createdAt < b.createdAt ? 1 : -1).map(ea => post(ea, postChild(ea.id))));
-            pageDiv.append(name, email, image, watchedByDiv, jobsDiv);
+            accountDiv.append(image, name, email, watchedByDiv);
+            pageDiv.append(accountDiv, jobsDiv);
         }
     });
 
@@ -91,10 +98,10 @@ export const accountPage = () => {
         const toEdit = document.createElement('a');
         toEdit.href = '/#edit';
         toEdit.innerText = 'Edit profile';
+        toEdit.classList.add('whiteBtn');
         header.appendChild(toEdit);
     }
     header.append(linkToFeed(), addJobLink());
     pageDiv.appendChild(header);
-    
     return pageDiv;
 };

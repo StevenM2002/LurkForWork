@@ -9,6 +9,7 @@ export const addJobPage = () => {
     const formDiv = document.createElement('div');
     const subbtn = document.createElement('button');
     const header = document.createElement('header');
+
     // For input data
     let data = {};
     const createInput = (name, labelText, type='text') => {
@@ -35,14 +36,22 @@ export const addJobPage = () => {
         div.append(label, input);
         return div;
     };
+    
     const title = createInput('title', 'Enter title: ');
     const image = createInput('image', 'Enter job image: ', 'file');
     const start = createInput('start', 'Enter start date: ', 'date');
     const description = createInput('description', 'Enter job description: ');
+    
     // Add attr and evnts
-    formDiv.className = 'centre-form';
+    formDiv.classList.add('formLayout');
+    form.classList.add('formLayout');
+    title.classList.add('formElement');
+    image.classList.add('formElement');
+    start.classList.add('formElement');
+    description.classList.add('formElement');
     subbtn.type = 'submit';
-    subbtn.innerText = 'Add new job';
+    subbtn.innerText = 'Add New Job';
+    subbtn.classList.add('whiteBtn')
     subbtn.addEventListener('click', (e) => {
         e.preventDefault();
         let imgDataPromise;

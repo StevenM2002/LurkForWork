@@ -4,13 +4,18 @@ import { doFetch, fetchUser, fileToDataUrl } from "../helpers.js";
 
 export const editAccountPage = () => {
     const pageDiv = document.createElement('div');
+    const formDiv = document.createElement('div');
     const form = document.createElement('form');
     const submitBtn = document.createElement('button');
     const cancelBtn = document.createElement('button');
 
     submitBtn.innerText = 'Save changes';
+    submitBtn.classList.add('subBtn');
     submitBtn.type = 'submit';
     cancelBtn.innerText = 'Cancel';
+    cancelBtn.classList.add('redBtn');
+    formDiv.classList.add('formLayout');
+    form.classList.add('centre-form');
 
     let dataToSend = {};
     // Cant be bothered to give ids and do it by selecting so have pointers to elems instead
@@ -105,10 +110,10 @@ export const editAccountPage = () => {
     });
 
     // Connect elems
-    form.append(name, email, pfp, pass, cancelBtn, submitBtn);
+    form.append(name, email, pfp, pass, submitBtn, cancelBtn);
+    formDiv.append(form);
     const header = document.createElement('header');
     header.append(linkedAccount(localStorage.getItem('userId')), linkToFeed())
-    pageDiv.append(header, form);
-
+    pageDiv.append(header, formDiv);
     return pageDiv;
 };
