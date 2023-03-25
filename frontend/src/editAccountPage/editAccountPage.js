@@ -1,6 +1,7 @@
 import { linkedAccount } from "../accountPage/linkedAccount.js";
 import { linkToFeed } from "../feedPage/linkToFeed.js";
 import { doFetch, fetchUser, fileToDataUrl } from "../helpers.js";
+import { logoutButton } from "../loginPage/logoutButton.js";
 
 export const editAccountPage = () => {
     const pageDiv = document.createElement('div');
@@ -96,6 +97,7 @@ export const editAccountPage = () => {
                 .then(() => submitFetch());
             } catch (e) {
                 alert(e);
+                return;
             }
         } else {
             submitFetch();
@@ -107,7 +109,7 @@ export const editAccountPage = () => {
     // Connect elems
     form.append(name, email, pfp, pass, cancelBtn, submitBtn);
     const header = document.createElement('header');
-    header.append(linkedAccount(localStorage.getItem('userId')), linkToFeed())
+    header.append(linkedAccount(localStorage.getItem('userId')), linkToFeed());
     pageDiv.append(header, form);
 
     return pageDiv;

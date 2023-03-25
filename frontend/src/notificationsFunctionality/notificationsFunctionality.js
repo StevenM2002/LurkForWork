@@ -21,7 +21,10 @@ export const saveDataNotifs = () => {
             localStorage.setItem('latestPostDate', new Date().toISOString());
         }
     })
-    .catch(e => console.log(e));
+    .catch(e => {
+        // Dont do anything because it's either token error which means not logged in or the error will be taken care of by
+        // the feed page
+    });
 };
 
 export const newJobNotif = () => {
@@ -43,7 +46,10 @@ export const newJobNotif = () => {
                 .then(() => localStorage.setItem('latestPostDate', res[0].createdAt));
             }
         })
-        .catch(e => console.log(e));
+        .catch(e => {
+            // Dont do anything because it's either token error which means not logged in or the error will be taken care of by
+            // the feed page
+        });
     };
     setInterval(() => doNotif(), 3000);
 };

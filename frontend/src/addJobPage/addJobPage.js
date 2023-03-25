@@ -1,6 +1,7 @@
 import { linkedAccount } from "../accountPage/linkedAccount.js";
 import { linkToFeed } from "../feedPage/linkToFeed.js";
 import { doFetch, fileToDataUrl } from "../helpers.js";
+import { logoutButton } from "../loginPage/logoutButton.js";
 
 export const addJobPage = () => {
     // Create elems

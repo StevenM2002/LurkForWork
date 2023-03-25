@@ -8,9 +8,12 @@ import { notFoundPage } from './notFoundPage/notFoundPage.js';
 import { initNotif, newJobNotif, saveDataNotifs } from './notificationsFunctionality/notificationsFunctionality.js';
 import { registrationPage } from './registrationPage/registrationPage.js';
 
-initNotif();
-saveDataNotifs();
-newJobNotif();
+try {
+    initNotif();
+    saveDataNotifs();
+    newJobNotif();
+} catch (e) {
+}
 
 const routes = {
     '#login': loginPage,

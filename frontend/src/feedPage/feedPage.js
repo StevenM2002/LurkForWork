@@ -8,6 +8,7 @@ import { showLikes } from "./showLikes.js";
 import { likeJob } from "./likeJob.js";
 import { displayComments } from "./displayComments.js";
 import { addJobLink } from "../addJobPage/addJobLink.js";
+import { logoutButton } from "../loginPage/logoutButton.js";
 
 export const feedPage = () => {
     // Create elems
@@ -37,7 +38,7 @@ export const feedPage = () => {
 
     // Add attr
     div.id = 'feedpage';
-    header.append(linkedAccount(window.localStorage.getItem('userId')), showModalBtn, addJobLink());
+    header.append(linkedAccount(window.localStorage.getItem('userId')), showModalBtn, addJobLink(), logoutButton());
     // Add elems
     const createPostChild = ({ likes, id, comments }) => {
         const postChildDiv = document.createElement('div');
@@ -121,6 +122,52 @@ export const feedPage = () => {
         });
     }
     fetchFeed();
+
+    const livePoll = () => {
+        // Clear interval if off of feed page
+        if (!(document.body.contains(div))) {
+            if (pollInterval !== undefined) {
+                clearInterval(pollInterval);
+                return;
+            }
+        }
+        // Only live for first 5 post according to ED forum
+        doFetch('/job/feed', undefined, 'GET', { 'start': 0}, window.localStorage.getItem('token'))
+        .then(res => 'error' in res ? Promise.reject(res) : res)
+        // Filter out if it is not loaded on screen yet to not mess with anything else
+        .then(res => [JSON.parse(localStorage.getItem('feed')).map(ea => ea.id), res])
+        .then(res => res[1].filter(ea => res[0].includes(ea.id)))
+        .then(res => {
+            const postIsEqual = (elem1, elem2) => {
+                // Get elems and make sure theyre sorted same
+                const belements1 = [...elem1.getElementsByTagName('b')].sort();
+                const belements2 = [...elem2.getElementsByTagName('b')].sort();
+                if (belements1.length !== belements2.length) {
+                    return false;
+                }
+                for (let i = 0; i < belements1.length; i++) {
+                    if (!belements1[i].isEqualNode(belements2[i])) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            for(let i = 0; i < res.length; i++) {
+                // Get curr div in page, remove it's contents then replace it
+                // with our newly created post div with updated information
+                // only if it has been updated
+                const newElem = post(res[i], createPostChild(res[i]));
+                const currDiv = document.getElementById(res[i].id);
+                if (postIsEqual(newElem, currDiv)) {
+                    continue;
+                }
+                currDiv.innerText = '';
+                currDiv.append(...newElem.children)
+            }
+        })
+    };
+
+    const pollInterval = setInterval(livePoll, 1500);
     // For infinite scroll
     document.addEventListener('scroll', () => {
         // documentElement scrollheight gets height of entire page, minus scrollY which is where the user is currently scrolled to. And if that is within the range of the viewport * 1.3 (as buffer space), then fetch the new content

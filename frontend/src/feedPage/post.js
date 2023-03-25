@@ -29,10 +29,11 @@ export const post = ( { id, creatorId, createdAt, image, title, start, likes, de
 
     // TODO: NEED TO FIX
     const delta = new Date() - new Date(createdAt);
-    const deltaStr = `${Math.floor(delta / 3600000)} Hours ${Math.floor((delta % 3600000) / 60000)} Minutes ago`
+    const deltaStr = `${Math.floor(delta / 3600000) === 0 ? '' : Math.floor(delta / 3600000) + ' Hours'} ${Math.floor((delta % 3600000) / 60000)} Minutes ago`
 
     // Add attr
     div.className = 'post';
+    div.id = id;
     // fetchUser(creatorId).then(res => res.name).then(res => name.innerText = `Posted by: ${res}`);
     postedTime.innerText = `Posted on: ${delta > 86400000 ? new Date(createdAt).toDateString() : deltaStr}`
     imageJob.alt = 'Picture description of job';
