@@ -5,10 +5,10 @@ export const likeJob = (id, turnon) => {
     const likeBtn = document.createElement('button');
     if (turnon) {
         likeBtn.innerText = 'Like';
-        likeBtn.className = 'likeBtn';
+        likeBtn.classList.add('likeBtn');
     } else {
         likeBtn.innerText = 'Unlike';
-        likeBtn.className = 'unlikeBtn';
+        likeBtn.classList.add('unlikeBtn');
     }
 
     likeBtn.addEventListener('click', (e) => {
