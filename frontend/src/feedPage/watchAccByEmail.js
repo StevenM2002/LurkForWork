@@ -7,11 +7,12 @@ export const watchAccByEmail = () => {
     const label = document.createElement('label');
     const input = document.createElement('input');
     const btn = document.createElement('button');
+    btn.classList.add('subBtn');
 
     // Create attributes
     label.for = 'watchAccByEmail';
-    label.innerText = 'Watch person: ';
-    input.placeholder = 'Their email';
+    label.innerText = 'Watch a person';
+    input.placeholder = 'Enter an email';
     input.name = 'watchAccByEmail';
     btn.type = 'submit';
     btn.innerText = 'Watch user';
