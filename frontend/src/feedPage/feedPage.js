@@ -8,6 +8,7 @@ import { showLikes } from "./showLikes.js";
 import { likeJob } from "./likeJob.js";
 import { displayComments } from "./displayComments.js";
 import { addJobLink } from "../addJobPage/addJobLink.js";
+import { logoutButton } from "../loginPage/logoutButton.js";
 
 export const feedPage = () => {
     // Create elems
@@ -55,7 +56,7 @@ export const feedPage = () => {
     div1.append(linkedAccount(window.localStorage.getItem('userId')));
     div2.append(showModalBtn, addJobLink());
     accountDiv.append(div1, div2);
-    header.append(accountDiv);
+    header.append(accountDiv, logoutButton());
 
     // Add elems
     const createPostChild = ({ likes, id, comments }) => {
@@ -82,24 +83,32 @@ export const feedPage = () => {
             currProfiles = localStorage.getItem('idprofile');
         }
         
-        
         currFeed = JSON.parse(currFeed);
         currProfiles = JSON.parse(currProfiles);
         // Cache items
         currFeed = [...currFeed, ...feed];
-        localStorage.setItem('feed', JSON.stringify(currFeed));
-        // Set profile cache for self and then for feed
-        fetchUser(localStorage.getItem('userId'))
-        .then(res => 'error' in res ? Promise.reject(res) : res)
-        .then(res => currProfiles[res.id] = {name: res.name, image: res.image})
-        .catch(e => alert(e.error));
-        feed.forEach(ea => 
-            fetchUser(ea.creatorId)
+        try {
+            localStorage.setItem('feed', JSON.stringify(currFeed));
+            // Set profile cache for self and then for feed
+            fetchUser(localStorage.getItem('userId'))
             .then(res => 'error' in res ? Promise.reject(res) : res)
             .then(res => currProfiles[res.id] = {name: res.name, image: res.image})
-            .then(() => localStorage.setItem('idprofile', JSON.stringify(currProfiles)))
-            .catch(e => alert(e.error))
-        );
+            .catch(e => alert(e.error));
+            feed.forEach(ea => 
+                fetchUser(ea.creatorId)
+                .then(res => 'error' in res ? Promise.reject(res) : res)
+                .then(res => currProfiles[res.id] = {name: res.name, image: res.image})
+                .then(() => localStorage.setItem('idprofile', JSON.stringify(currProfiles)))
+                .catch(e => alert(e.error))
+            );
+        } catch (e) {
+            if (e.name === "QuotaExceededError") {
+                alert('Local storage space is full for offline feed');
+            } else {
+                // Dont show user any other err as this is for saving feed, so other errors will be shown appropriately by other fetch calls
+                console.log(e);
+            }
+        }
         // return the feed so it can be kept in the thenable chain
         return feed;
     }
@@ -127,6 +136,7 @@ export const feedPage = () => {
         .then(res => div.append(...res))
         .then(() => isFetchFiring = false)
         .catch(res => {
+            console.log(res);
             if (res.error === 'No network detected') {
                 getOfflineFeed();
             } else {
@@ -135,6 +145,52 @@ export const feedPage = () => {
         });
     }
     fetchFeed();
+
+    const livePoll = () => {
+        // Clear interval if off of feed page
+        if (!(document.body.contains(div))) {
+            if (pollInterval !== undefined) {
+                clearInterval(pollInterval);
+                return;
+            }
+        }
+        // Only live for first 5 post according to ED forum
+        doFetch('/job/feed', undefined, 'GET', { 'start': 0}, window.localStorage.getItem('token'))
+        .then(res => 'error' in res ? Promise.reject(res) : res)
+        // Filter out if it is not loaded on screen yet to not mess with anything else
+        .then(res => [JSON.parse(localStorage.getItem('feed')).map(ea => ea.id), res])
+        .then(res => res[1].filter(ea => res[0].includes(ea.id)))
+        .then(res => {
+            const postIsEqual = (elem1, elem2) => {
+                // Get elems and make sure theyre sorted same
+                const belements1 = [...elem1.getElementsByTagName('b')].sort();
+                const belements2 = [...elem2.getElementsByTagName('b')].sort();
+                if (belements1.length !== belements2.length) {
+                    return false;
+                }
+                for (let i = 0; i < belements1.length; i++) {
+                    if (!belements1[i].isEqualNode(belements2[i])) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            for(let i = 0; i < res.length; i++) {
+                // Get curr div in page, remove it's contents then replace it
+                // with our newly created post div with updated information
+                // only if it has been updated
+                const newElem = post(res[i], createPostChild(res[i]));
+                const currDiv = document.getElementById(res[i].id);
+                if (postIsEqual(newElem, currDiv)) {
+                    continue;
+                }
+                currDiv.innerText = '';
+                currDiv.append(...newElem.children)
+            }
+        })
+    };
+
+    const pollInterval = setInterval(livePoll, 1500);
     // For infinite scroll
     document.addEventListener('scroll', () => {
         // documentElement scrollheight gets height of entire page, minus scrollY which is where the user is currently scrolled to. And if that is within the range of the viewport * 1.3 (as buffer space), then fetch the new content

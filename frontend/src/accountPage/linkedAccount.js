@@ -12,6 +12,21 @@ export const linkedAccount = (id) => {
     div.className = 'linkedaccount';
     linkedName.href = `/#account=${id}`;
 
+    const noNetworkFetch = () => {
+        const profileCache = JSON.parse(localStorage.getItem('idprofile'));
+        // If there is no cache
+        if (profileCache === null || !(id in profileCache)) {
+            linkedName.innerText = id;
+            pfp.src = default_pfp;
+        } else {
+            // Get the cached name and image
+            linkedName.innerText = profileCache[id].name;
+            pfp.src = profileCache[id].image === undefined ? default_pfp : profileCache[id].image;
+            div.append(linkedName, pfp);
+        }
+    }
+    // do a no network fetch to buffer the lag in polling
+    noNetworkFetch();
     pfp.addEventListener('click', () => location.href = `/#account=${id}`);
     fetchUser(id)
     .then(res => 'error' in res ? Promise.reject(res) : res)
@@ -22,17 +37,7 @@ export const linkedAccount = (id) => {
     })
     .catch(e => {
         if (e.error === 'No network detected') {
-            const profileCache = JSON.parse(localStorage.getItem('idprofile'));
-            // If there is no cache
-            if (profileCache === null || !(id in profileCache)) {
-                linkedName.innerText = id;
-                pfp.src = default_pfp;
-            } else {
-                // Get the cached name and image
-                linkedName.innerText = profileCache[id].name;
-                pfp.src = profileCache[id].image === undefined ? default_pfp : profileCache[id].image;
-                div.append(pfp, linkedName);
-            }
+            noNetworkFetch();
         } else {
             alert(e.error);
         }

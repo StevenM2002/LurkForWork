@@ -1,6 +1,7 @@
 import { linkedAccount } from "../accountPage/linkedAccount.js";
 import { linkToFeed } from "../feedPage/linkToFeed.js";
 import { doFetch, fetchUser, fileToDataUrl } from "../helpers.js";
+import { logoutButton } from "../loginPage/logoutButton.js";
 
 export const editAccountPage = () => {
     const pageDiv = document.createElement('div');
@@ -92,7 +93,8 @@ export const editAccountPage = () => {
                 if (res.error !== undefined) {
                     alert(res.error);
                 }
-            });
+            })
+            .then(() => cancelBtn.dispatchEvent(new Event('click')));
         };
         if ('image' in dataToSend) {
             try {
@@ -101,19 +103,20 @@ export const editAccountPage = () => {
                 .then(() => submitFetch());
             } catch (e) {
                 alert(e);
+                return;
             }
         } else {
             submitFetch();
         }
         alert('Updated!');
-        cancelBtn.dispatchEvent(new Event('click'));
     });
 
     // Connect elems
     form.append(name, email, pfp, pass, submitBtn, cancelBtn);
     formDiv.append(form);
     const header = document.createElement('header');
-    header.append(linkedAccount(localStorage.getItem('userId')), linkToFeed())
-    pageDiv.append(header, formDiv);
+    header.append(linkedAccount(localStorage.getItem('userId')), linkToFeed());
+    pageDiv.append(header, form);
+
     return pageDiv;
 };

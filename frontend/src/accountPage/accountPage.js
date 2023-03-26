@@ -2,6 +2,7 @@ import { addJobLink } from "../addJobPage/addJobLink.js";
 import { linkToFeed } from "../feedPage/linkToFeed.js";
 import { post } from "../feedPage/post.js";
 import { fetchUser } from "../helpers.js";
+import { logoutButton } from "../loginPage/logoutButton.js";
 import { modalComponent } from "../modalComponent.js/modalComponent.js";
 import { accountNotFound } from "./accountNotFound.js";
 import { deleteJob } from "./deleteJob.js";
@@ -101,7 +102,7 @@ export const accountPage = () => {
         toEdit.classList.add('whiteBtn');
         header.appendChild(toEdit);
     }
-    header.append(linkToFeed(), addJobLink());
+    header.append(linkToFeed(), addJobLink(), logoutButton());
     pageDiv.appendChild(header);
     return pageDiv;
 };
