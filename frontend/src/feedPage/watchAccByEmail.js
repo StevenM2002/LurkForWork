@@ -14,6 +14,7 @@ export const watchAccByEmail = () => {
     label.innerText = 'Watch a person';
     input.placeholder = 'Enter an email';
     input.name = 'watchAccByEmail';
+    input.classList.add('commentInput');
     btn.type = 'submit';
     btn.innerText = 'Watch user';
     form.className = 'centreForm';

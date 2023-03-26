@@ -5,9 +5,10 @@ export const modalComponent = (closeModalCallback, children=document.createEleme
     const closeBtn = document.createElement('button');
 
     // Add attributes
-    backgroundDiv.className = 'backgroundModal';
-    modalDiv.className = 'modal';
-    closeBtn.className = 'modalCloseBtn closeBtnBackground';
+    backgroundDiv.classList.add('backgroundModal');
+    modalDiv.classList.add('modal');
+    closeBtn.classList.add('modalCloseBtn')
+    closeBtn.classList.add('closeBtnBackground');
 
     // Event handler
     closeBtn.addEventListener('click', (e) => {
