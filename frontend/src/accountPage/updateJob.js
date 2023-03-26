@@ -60,6 +60,7 @@ export const updateJob = (id) => {
     const start = createInput('start', 'Enter starting date: ', 'date');
     const description = createInput('description', 'Enter job description: ');
     subBtn.innerText = 'Save';
+    subBtn.classList.add('subBtn');
 
     subBtn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -100,7 +101,10 @@ export const updateJob = (id) => {
         }); 
     });
 
-    form.append(title, image, start, description, subBtn);
+    const divBtn = document.createElement('div');
+    divBtn.classList.add('divHorizontal');
+    divBtn.append(subBtn);
+    form.append(title, image, start, description, divBtn);
     mainDiv.append(form);
 
     // Callback for modal to use

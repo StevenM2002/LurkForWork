@@ -7,6 +7,7 @@ export const addJobPage = () => {
     // Create elements
     const pageDiv = document.createElement('div');
     const form = document.createElement('form');
+    const divBtn = document.createElement('div');
     const subbtn = document.createElement('button');
     const header = document.createElement('header');
 
@@ -48,6 +49,8 @@ export const addJobPage = () => {
     image.classList.add('formElement');
     start.classList.add('formElement');
     description.classList.add('formElement');
+    divBtn.classList.add('formElement');
+    divBtn.append(subbtn);
     subbtn.type = 'submit';
     subbtn.innerText = 'Add New Job';
     subbtn.classList.add('blueBtn');
@@ -86,7 +89,7 @@ export const addJobPage = () => {
     });
 
     // Connect elements
-    form.append(title, image, start, description, subbtn);
+    form.append(title, image, start, description, divBtn);
     header.append(linkedAccount(localStorage.getItem('userId')), linkToFeed());
     pageDiv.append(header, form);
     return pageDiv;
