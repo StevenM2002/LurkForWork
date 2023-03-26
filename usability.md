@@ -13,3 +13,7 @@
 - Login and register auto takes you to feed page after success
 
 - Links between login and register page on the login and register pages themselves
+
+- A simple colour scheme and ideal contrast between text and background so text can be read
+
+- A simplified nav bar to display what users can interact with 
