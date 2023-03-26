@@ -19,7 +19,7 @@ export const accountPage = () => {
         return accountNotFound();
     }
 
-    // Create elems
+    // Create elements
     const pageDiv = document.createElement('div');
     const email = document.createElement('p');
     const name = document.createElement('h2');
@@ -28,6 +28,8 @@ export const accountPage = () => {
     const watchedByDiv = document.createElement('div');
     const watchedByNum = document.createElement('p');
     const header = document.createElement('header');
+    
+    // Add attributes
     pageDiv.id = 'accountpage';
     header.classList.add('div-horizontal');
     watchedByDiv.classList.add('watchedByDiv');
@@ -52,6 +54,7 @@ export const accountPage = () => {
         updateJobDiv.append(editJobBtn, editJobModal);
         return updateJobDiv;
     }
+
     // Create child to post
     const postChild = (id) => {
         const postChildDiv = document.createElement('div');
@@ -62,13 +65,14 @@ export const accountPage = () => {
     const accountDiv = document.createElement('div');
     accountDiv.classList.add('grid-container');
     accountDiv.classList.add('accountDiv');
+
     // Add everything that has to wait for promise to resolve inside promise
     fetchUser(userId).then(res => {
         if (res === undefined || res.error !== undefined) {
             alert(res.error);
             pageDiv.appendChild(accountNotFound());
         } else {
-            // Add attr
+            // Add watchers
             if (userId !== localStorage.getItem('userId')) {
                 if (!res.watcheeUserIds.map((ea) => ea.toString()).includes(localStorage.getItem('userId'))) {
                     pageDiv.appendChild(watchAccount(res.email, true));
@@ -76,11 +80,13 @@ export const accountPage = () => {
                     pageDiv.appendChild(watchAccount(res.email, false));
                 }
             }
+            // Add all other details
             email.innerText = res.email;
             name.innerText = res.name;
             image.src = res.image === undefined ? defaultPicture : res.image;
             image.alt = 'Profile picture';
             watchedByNum.innerText = `Watched by ${res.watcheeUserIds.length} users`;
+            
             // Connect elems
             watchedByDiv.appendChild(watchedByNum);
             watchedByDiv.append(...res.watcheeUserIds.map(ea => linkedAccount(ea)));
@@ -94,6 +100,7 @@ export const accountPage = () => {
     if (userId !== localStorage.getItem('userId') && localStorage.getItem('userId') !== undefined) {
         header.appendChild(linkedAccount(localStorage.getItem('userId')));
     } 
+
     // Add edit functionality if it is own profile
     else {
         const toEdit = document.createElement('a');
@@ -102,6 +109,7 @@ export const accountPage = () => {
         toEdit.classList.add('whiteBtn');
         header.appendChild(toEdit);
     }
+
     header.append(linkToFeed(), addJobLink(), logoutButton());
     pageDiv.appendChild(header);
     return pageDiv;

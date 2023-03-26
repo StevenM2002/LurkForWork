@@ -280,7 +280,6 @@ h3 {
     color: #2A3467;
 }
 
-
 /* Account */
 .linkedaccount {
     display: flex;
@@ -415,8 +414,27 @@ a:active {
     padding: .6rem 1rem;
     border-radius: 2rem;
     border: 1px solid #777777;
-    width: clamp(100px, 20vw, 300px);
+    width: clamp(100px, 15vw, 300px);
     height: 25px;
+}
+
+/* Display comments */
+.comment-layout {
+    display: block;
+    text-align: center;
+}
+
+.comment-item {
+    border-bottom: 1px solid #CDCDCD;
+}
+
+.comment-item .linkedaccount > a {
+    color: black;
+}
+
+.comment-item > p {
+    padding: 0.5rem;
+    text-align: center;
 }
 
 /* Customised divs */

@@ -4,7 +4,7 @@ import { doFetch, fileToDataUrl } from "../helpers.js";
 import { logoutButton } from "../loginPage/logoutButton.js";
 
 export const addJobPage = () => {
-    // Create elems
+    // Create elements
     const pageDiv = document.createElement('div');
     const form = document.createElement('form');
     const subbtn = document.createElement('button');
@@ -42,7 +42,7 @@ export const addJobPage = () => {
     const start = createInput('start', 'Enter start date: ', 'date');
     const description = createInput('description', 'Enter job description: ');
     
-    // Add attr and evnts
+    // Add attributes and events
     form.classList.add('formLayout');
     title.classList.add('formElement');
     image.classList.add('formElement');
@@ -50,7 +50,8 @@ export const addJobPage = () => {
     description.classList.add('formElement');
     subbtn.type = 'submit';
     subbtn.innerText = 'Add New Job';
-    subbtn.classList.add('whiteBtn')
+    subbtn.classList.add('whiteBtn');
+
     subbtn.addEventListener('click', (e) => {
         e.preventDefault();
         let imgDataPromise;
@@ -84,6 +85,7 @@ export const addJobPage = () => {
         }
     });
 
+    // Connect elements
     form.append(title, image, start, description, subbtn);
     header.append(linkedAccount(localStorage.getItem('userId')), linkToFeed());
     pageDiv.append(header, form);

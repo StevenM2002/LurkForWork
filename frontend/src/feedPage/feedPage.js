@@ -11,15 +11,14 @@ import { addJobLink } from "../addJobPage/addJobLink.js";
 import { logoutButton } from "../loginPage/logoutButton.js";
 
 export const feedPage = () => {
-    // Create elems
+    // Create elements
     document.body.classList.add('background');
     const div = document.createElement('div');
     const header = document.createElement('header');
     const showModalBtn = document.createElement('button');
-
-    showModalBtn.classList.add('subBtn');
     
-    // Modal stuff below
+    // Modal items below
+    showModalBtn.classList.add('subBtn');
     showModalBtn.innerText = 'Watch a user';
     let isModalVisible = false;
     const modalCallback = () => {
@@ -52,7 +51,7 @@ export const feedPage = () => {
     accountDiv.append(linkedAccount(window.localStorage.getItem('userId')), navBar);
     header.append(accountDiv);
 
-    // Add elems
+    // Add elements after
     const createPostChild = ({ likes, id, comments }) => {
         const postChildDiv = document.createElement('div');
         postChildDiv.classList.add('postChildDiv');
@@ -62,7 +61,6 @@ export const feedPage = () => {
         postChildDiv.append(likesDiv, addComment(id), displayComments(comments));
         return postChildDiv;
     }
-
     
     let numPostsLoaded = 0;
     // Save the feed into localstorage for offline use
@@ -191,13 +189,15 @@ export const feedPage = () => {
     const pollInterval = setInterval(livePoll, 1500);
     // For infinite scroll
     document.addEventListener('scroll', () => {
-        // documentElement scrollheight gets height of entire page, minus scrollY which is where the user is currently scrolled to. And if that is within the range of the viewport * 1.3 (as buffer space), then fetch the new content
+        // documentElement scrollheight gets height of entire page, minus scrollY which is where the user is currently scrolled to. 
+        // And if that is within the range of the viewport * 1.3 (as buffer space), then fetch the new content
         if (document.documentElement.scrollHeight - window.scrollY < window.innerHeight * 1.3 && !isFetchFiring) {
             isFetchFiring = true;
             fetchFeed();
         }
     });
 
+    // Connect elements
     div.appendChild(header);
     return div;
 };

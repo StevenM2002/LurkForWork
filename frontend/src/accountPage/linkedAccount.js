@@ -3,15 +3,19 @@ import { fetchUser } from "../helpers.js";
 const default_pfp = '../../assets/default_pfp.svg';
 
 export const linkedAccount = (id) => {
+    // Create elements 
     const div = document.createElement('div');
     const pfp = document.createElement('img');
     const linkedName = document.createElement('a');
-    pfp.alt = 'clickable profile picture that navigates to their acount';
-    pfp.className = 'profilePic';
-    linkedName.className = 'inputLabel';
+
+    // Add attributes
     div.className = 'linkedaccount';
+    pfp.className = 'profilePic';
+    pfp.alt = 'clickable profile picture that navigates to their acount';
+    linkedName.className = 'inputLabel';
     linkedName.href = `/#account=${id}`;
 
+    // Offline implementation
     const noNetworkFetch = () => {
         const profileCache = JSON.parse(localStorage.getItem('idprofile'));
         // If there is no cache
@@ -25,7 +29,8 @@ export const linkedAccount = (id) => {
             div.append(pfp, linkedName);
         }
     }
-    // do a no network fetch to buffer the lag in polling
+
+    // Do a no network fetch to buffer the lag in polling
     noNetworkFetch();
     pfp.addEventListener('click', () => location.href = `/#account=${id}`);
     fetchUser(id)
@@ -42,5 +47,6 @@ export const linkedAccount = (id) => {
             alert(e.error);
         }
     });
+
     return div;
 };

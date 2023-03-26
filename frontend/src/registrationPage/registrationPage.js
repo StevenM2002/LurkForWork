@@ -1,7 +1,7 @@
 import { doFetch } from "../helpers.js";
 
 export const registrationPage = () => {
-    // Create elems
+    // Create elements
     const div = document.createElement('div');
     const nameDiv = document.createElement('div');
     const nameLabel = document.createElement('label');
@@ -20,7 +20,7 @@ export const registrationPage = () => {
     const title = document.createElement('h1');
     const toLogin = document.createElement('a');
 
-    // Add attr
+    // Add attributes
     document.body.classList.add('background');
     nameDiv.classList.add('inputDiv');
     nameLabel.innerText = 'Name';
@@ -77,7 +77,6 @@ export const registrationPage = () => {
             }
         });
     })
-    
     
     // Connect nodes
     nameDiv.append(nameLabel, nameInput);

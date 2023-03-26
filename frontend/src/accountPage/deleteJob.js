@@ -1,12 +1,14 @@
 import { doFetch } from "../helpers.js";
 
 export const deleteJob = (id) => {
-    // Only button and no div coz why not my add parent div later for css purpose
+    // Create only button and no div for reusability
     const deleteJobBtn = document.createElement('button');
-    deleteJobBtn.classList.add('redBtn');
 
+    // Add attributes
+    deleteJobBtn.classList.add('redBtn');
     deleteJobBtn.innerText = 'Delete';
 
+    // Event handlers
     deleteJobBtn.addEventListener('click', (e) => {
         e.preventDefault();
         doFetch('/job', {id}, 'DELETE', null, localStorage.getItem('token'))
@@ -20,4 +22,4 @@ export const deleteJob = (id) => {
     });
 
     return deleteJobBtn;
-}
+};

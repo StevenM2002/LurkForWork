@@ -29,14 +29,14 @@ export const post = ( { id, creatorId, createdAt, image, title, start, likes, de
     const likesNum = document.createElement('b');
     const commentsNum = document.createElement('b');
 
-    // TODO: NEED TO FIX
+    // Time posted
     const delta = new Date() - new Date(createdAt);
-    const deltaStr = `${Math.floor(delta / 3600000) === 0 ? '' : Math.floor(delta / 3600000) + ' Hours'} ${Math.floor((delta % 3600000) / 60000)} Minutes ago`
+    const deltaStr = `${Math.floor(delta / 3600000) === 0 ? '' : Math.floor(delta / 3600000) + ' hours'} ${Math.floor((delta % 3600000) / 60000)} minutes ago`
+    // fetchUser(creatorId).then(res => res.name).then(res => name.innerText = `Posted by: ${res}`);
 
-    // Add attr
+    // Add attributes
     div.classList.add('post');
     div.id = id;
-    // fetchUser(creatorId).then(res => res.name).then(res => name.innerText = `Posted by: ${res}`);
     accountDiv.classList.add('postAccountDiv');
     accountDiv.append(name);
     postedTime.innerText = `Posted on: ${delta > 86400000 ? new Date(createdAt).toDateString() : deltaStr}`;
@@ -54,7 +54,7 @@ export const post = ( { id, creatorId, createdAt, image, title, start, likes, de
     commentsNum.innerText = `${comments.length} comments`;
     statsDiv.append(likesNum, commentsNum);
 
-    // Connect elems
+    // Connect elements
     div.append(accountDiv, postedTime, titleJob, dateStart, imageJob, jobDescTitle, descJob, statsDiv);
     if (children !== undefined) {
         div.appendChild(children);

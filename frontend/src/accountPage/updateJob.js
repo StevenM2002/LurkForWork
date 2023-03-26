@@ -1,9 +1,11 @@
 import { doFetch, fileToDataUrl } from "../helpers.js";
 
 export const updateJob = (id) => {
+    // Create elements
     const mainDiv = document.createElement('div');
     const form = document.createElement('form');
     const subBtn = document.createElement('button');
+
     let data = {};
     const createInput = (name, labelText, type='text') => {
         const outerDiv = document.createElement('div');
@@ -25,7 +27,8 @@ export const updateJob = (id) => {
         label.innerText = labelText;
         innerDiv.append(label, input);
         innerDiv.classList.add('hidden');
-        // Add evnts
+
+        // Add events
         input.addEventListener('change', (e) => {
             e.preventDefault();
             if (type === 'file') {
@@ -47,15 +50,17 @@ export const updateJob = (id) => {
                 delete data[name];
             }
         });
-
         outerDiv.append(checkboxLabel, checkbox, innerDiv);
         return outerDiv;
     };
+
+    // Creating elements for the form
     const title = createInput('title', 'Enter title: ');
     const image = createInput('image', 'Enter job image: ', 'file');
     const start = createInput('start', 'Enter starting date: ', 'date');
     const description = createInput('description', 'Enter job description: ');
     subBtn.innerText = 'Save';
+
     subBtn.addEventListener('click', (e) => {
         e.preventDefault();
         let imageData = Promise.resolve(undefined);

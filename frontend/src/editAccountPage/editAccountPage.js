@@ -4,11 +4,13 @@ import { doFetch, fetchUser, fileToDataUrl } from "../helpers.js";
 import { logoutButton } from "../loginPage/logoutButton.js";
 
 export const editAccountPage = () => {
+    // Create elements
     const pageDiv = document.createElement('div');
     const form = document.createElement('form');
     const submitBtn = document.createElement('button');
     const cancelBtn = document.createElement('button');
 
+    // Add attributes
     submitBtn.innerText = 'Save changes';
     submitBtn.classList.add('subBtn');
     submitBtn.type = 'submit';
@@ -17,7 +19,7 @@ export const editAccountPage = () => {
     form.classList.add('formLayout');
 
     let dataToSend = {};
-    // Cant be bothered to give ids and do it by selecting so have pointers to elems instead
+    // Instead of giving IDs, do it by selecting so have pointers to elements instead
     const refToInputDivs = [];
     const makeNewInput = (name, labelText, type='text') => {
         const div = document.createElement('div');
@@ -72,11 +74,14 @@ export const editAccountPage = () => {
         div.append(checkboxLabel, checkbox, inputDiv);
         return div;
     };
+
+    // Create elements for the form
     const name = makeNewInput('name', 'Name: ');
     const email = makeNewInput('email', 'Email: ')
     const pfp = makeNewInput('image', 'Profile Pic: ', 'file');
     const pass = makeNewInput('password', 'Password: ', 'password');
     
+    // Event handlers
     cancelBtn.addEventListener('click', (e) => {
         e.preventDefault();
         form.reset();
@@ -110,12 +115,12 @@ export const editAccountPage = () => {
         alert('Updated!');
     });
 
-    // Connect elems
-    const divBtns = document.createElement('div');
-    divBtns.classList.add('div-horizontal');
-    divBtns.classList.add('headerDivHor');
-    divBtns.append(submitBtn, cancelBtn);
-    form.append(name, email, pfp, pass, divBtns);
+    // Connect elements
+    const btnsDiv = document.createElement('div');
+    btnsDiv.classList.add('div-horizontal');
+    btnsDiv.classList.add('headerDivHor');
+    btnsDiv.append(submitBtn, cancelBtn);
+    form.append(name, email, pfp, pass, btnsDiv);
     const header = document.createElement('header');
     header.append(linkedAccount(localStorage.getItem('userId')), linkToFeed());
     pageDiv.append(header, form);
