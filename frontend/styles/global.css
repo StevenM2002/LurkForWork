@@ -227,7 +227,7 @@ li {
     z-index: 10;
     background-color: white;
     cursor: default;
-    width: 50%;
+    width: clamp(400px, 50%, 70%);
     min-height: 30%;
     max-height: 70%;
     overflow-y: scroll;
