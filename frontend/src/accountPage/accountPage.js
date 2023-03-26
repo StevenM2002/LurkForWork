@@ -60,7 +60,7 @@ export const accountPage = () => {
     }
 
     const accountDiv = document.createElement('div');
-    accountDiv.classList.add('div-vertical');
+    accountDiv.classList.add('grid-container');
     accountDiv.classList.add('accountDiv');
     // Add everything that has to wait for promise to resolve inside promise
     fetchUser(userId).then(res => {

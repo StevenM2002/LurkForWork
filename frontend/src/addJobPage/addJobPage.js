@@ -7,7 +7,6 @@ export const addJobPage = () => {
     // Create elems
     const pageDiv = document.createElement('div');
     const form = document.createElement('form');
-    const formDiv = document.createElement('div');
     const subbtn = document.createElement('button');
     const header = document.createElement('header');
 
@@ -44,7 +43,6 @@ export const addJobPage = () => {
     const description = createInput('description', 'Enter job description: ');
     
     // Add attr and evnts
-    formDiv.classList.add('formLayout');
     form.classList.add('formLayout');
     title.classList.add('formElement');
     image.classList.add('formElement');
@@ -87,8 +85,7 @@ export const addJobPage = () => {
     });
 
     form.append(title, image, start, description, subbtn);
-    formDiv.append(form);
     header.append(linkedAccount(localStorage.getItem('userId')), linkToFeed());
-    pageDiv.append(header, formDiv);
+    pageDiv.append(header, form);
     return pageDiv;
 };

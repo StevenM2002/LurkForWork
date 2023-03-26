@@ -42,21 +42,15 @@ export const feedPage = () => {
     // Add header attributes
     div.id = 'feedpage';
     const accountDiv = document.createElement('div');
-    accountDiv.classList.add('div-horizontal');
-    accountDiv.classList.add('headerDivHor');
+    accountDiv.classList.add('div-vertical');
 
-    const div1 = document.createElement('div');
-    div1.classList.add('div-vertical');
-    div1.classList.add('headerDivVer');
+    const navBar = document.createElement('div');
+    navBar.classList.add('div-horizontal');
+    navBar.classList.add('headerDivHor');
 
-    const div2 = document.createElement('div');
-    div2.classList.add('div-vertical');
-    div2.classList.add('headerDivVer');
-
-    div1.append(linkedAccount(window.localStorage.getItem('userId')));
-    div2.append(showModalBtn, addJobLink());
-    accountDiv.append(div1, div2);
-    header.append(accountDiv, logoutButton());
+    navBar.append(showModalBtn, addJobLink(), logoutButton());
+    accountDiv.append(linkedAccount(window.localStorage.getItem('userId')), navBar);
+    header.append(accountDiv);
 
     // Add elems
     const createPostChild = ({ likes, id, comments }) => {

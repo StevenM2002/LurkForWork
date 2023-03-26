@@ -116,6 +116,11 @@ h3 {
     justify-content: center;
 }
 
+.formLayout {
+    height: 70vh;
+    transform: translate(-50%, -35%);
+}
+
 /* Form */
 .centre-form {
     display: flex;
