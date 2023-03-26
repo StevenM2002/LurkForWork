@@ -44,7 +44,7 @@ export const registrationPage = () => {
     subBtn.textContent = 'Sign up!';
     subBtn.classList.add('subBtn');
     div.id = 'registrationpage';
-    form.classList.add('centre-form');
+    form.classList.add('centreForm');
     title.innerText = 'Register to LurkForWork!';
     toLogin.href = '/#login';
     toLogin.innerText = 'Login here!';

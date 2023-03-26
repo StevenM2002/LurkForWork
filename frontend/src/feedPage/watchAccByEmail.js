@@ -15,7 +15,7 @@ export const watchAccByEmail = () => {
     input.name = 'watchAccByEmail';
     btn.type = 'submit';
     btn.innerText = 'Watch user';
-    form.className = 'centre-form';
+    form.className = 'centreForm';
 
     // Event handler
     btn.addEventListener('click', (e) => {

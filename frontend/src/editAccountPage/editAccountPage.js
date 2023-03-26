@@ -117,7 +117,7 @@ export const editAccountPage = () => {
 
     // Connect elements
     const btnsDiv = document.createElement('div');
-    btnsDiv.classList.add('div-horizontal');
+    btnsDiv.classList.add('divHorizontal');
     btnsDiv.classList.add('headerDivHor');
     btnsDiv.append(submitBtn, cancelBtn);
     form.append(name, email, pfp, pass, btnsDiv);

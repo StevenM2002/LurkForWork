@@ -8,7 +8,7 @@ export const displayComments = (comments) => {
     const content = document.createElement('div');
 
     // Add attributes
-    div.classList.add('comment-layout');
+    div.classList.add('commentLayout');
     btn.innerText = 'Show Comments';
     btn.classList.add('whiteBtn');
     content.classList.add('hidden');

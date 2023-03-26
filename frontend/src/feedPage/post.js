@@ -48,7 +48,7 @@ export const post = ( { id, creatorId, createdAt, image, title, start, likes, de
     dateStart.classList.add('dateStyle');
     jobDescTitle.innerText = 'Job Description'; 
     descJob.innerText = description;
-    statsDiv.classList.add('div-horizontal');
+    statsDiv.classList.add('divHorizontal');
     statsDiv.classList.add('statsDiv');
     likesNum.innerText = `${likes.length} likes`;
     commentsNum.innerText = `${comments.length} comments`;

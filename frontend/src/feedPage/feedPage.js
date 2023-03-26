@@ -41,10 +41,10 @@ export const feedPage = () => {
     // Add header attributes
     div.id = 'feedpage';
     const accountDiv = document.createElement('div');
-    accountDiv.classList.add('div-vertical');
+    accountDiv.classList.add('divVertical');
 
     const navBar = document.createElement('div');
-    navBar.classList.add('div-horizontal');
+    navBar.classList.add('divHorizontal');
     navBar.classList.add('customHeaderDiv');
 
     navBar.append(showModalBtn, addJobLink(), logoutButton());
@@ -56,7 +56,7 @@ export const feedPage = () => {
         const postChildDiv = document.createElement('div');
         postChildDiv.classList.add('postChildDiv');
         const likesDiv = document.createElement('div');
-        likesDiv.classList.add('div-horizontal');
+        likesDiv.classList.add('divHorizontal');
         likesDiv.append(likeJob(id, !likes.map(each => each.userId.toString()).includes(localStorage.getItem('userId'))), showLikes(likes.map(each => each.userName.toString())));
         postChildDiv.append(likesDiv, addComment(id), displayComments(comments));
         return postChildDiv;

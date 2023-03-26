@@ -31,7 +31,7 @@ export const accountPage = () => {
     
     // Add attributes
     pageDiv.id = 'accountpage';
-    header.classList.add('div-horizontal');
+    header.classList.add('divHorizontal');
     watchedByDiv.classList.add('watchedByDiv');
     
     // Create update job modal

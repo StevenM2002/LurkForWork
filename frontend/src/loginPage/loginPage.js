@@ -31,7 +31,7 @@ export const loginPage = () => {
     subBtn.type = 'submit';
     subBtn.innerText = 'Login now!';
     subBtn.classList.add('subBtn');
-    form.classList.add('centre-form');
+    form.classList.add('centreForm');
     toRegi.href = '/#register';
     toRegi.innerText = 'Register here!';
     toRegi.classList.add('linkBtn');
