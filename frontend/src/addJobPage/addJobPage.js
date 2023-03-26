@@ -50,7 +50,7 @@ export const addJobPage = () => {
     description.classList.add('formElement');
     subbtn.type = 'submit';
     subbtn.innerText = 'Add New Job';
-    subbtn.classList.add('whiteBtn');
+    subbtn.classList.add('blueBtn');
 
     subbtn.addEventListener('click', (e) => {
         e.preventDefault();

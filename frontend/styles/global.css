@@ -66,6 +66,16 @@ h3 {
     color: #555555;
 }
 
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 1rem;
+}
+
+li {
+    padding: 0.5rem;
+}
+
 /* Pages */
 #loginpage, #registrationpage, .formLayout {
     margin: 0;
@@ -99,7 +109,7 @@ h3 {
 
 .background {
     background-image: linear-gradient(#a1efff, #a5aafc);
-    background-size: cover
+    background-size: cover;
 }
 
 .divHorizontal {
@@ -408,6 +418,7 @@ a:active {
 .imgJob {
     min-width: 200px;
     max-width: 15%;
+    padding: 0.5rem;
 }
 
 .commentInput {
@@ -425,7 +436,7 @@ a:active {
 }
 
 .commentItem {
-    border-bottom: 1px solid #CDCDCD;
+    border-top: 1px solid #CDCDCD;
 }
 
 .commentItem .linkedaccount > a {
