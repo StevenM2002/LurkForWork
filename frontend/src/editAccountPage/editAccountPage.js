@@ -23,7 +23,8 @@ export const editAccountPage = () => {
     const refToInputDivs = [];
     const makeNewInput = (name, labelText, type='text') => {
         const div = document.createElement('div');
-        div.classList.add('formElement');
+        const divBoxLabel = document.createElement('div');
+        divBoxLabel.classList.add('divHorizontal');
         const checkbox = document.createElement('input');
         const checkboxLabel = document.createElement('label');
         const label = document.createElement('label');
@@ -71,7 +72,8 @@ export const editAccountPage = () => {
             }
         });
         
-        div.append(checkboxLabel, checkbox, inputDiv);
+        divBoxLabel.append(checkboxLabel, checkbox);
+        div.append(divBoxLabel, inputDiv);
         return div;
     };
 

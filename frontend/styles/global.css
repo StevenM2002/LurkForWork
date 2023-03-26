@@ -74,6 +74,7 @@ ul {
 
 li {
     padding: 0.5rem;
+    font-weight: bold;
 }
 
 /* Pages */
@@ -127,8 +128,13 @@ li {
 }
 
 .formLayout {
+    display: grid;
     height: 600px;
     transform: translate(-50%, -35%);
+}
+
+.formLayout .divHorizontal > label {
+    font-weight: bold;
 }
 
 .formElement {
