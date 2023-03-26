@@ -16,6 +16,7 @@ try {
 }
 
 const routes = {
+    '': () => location.href = '/#login',
     '#login': loginPage,
     '#register': registrationPage,
     '#feed': feedPage,
