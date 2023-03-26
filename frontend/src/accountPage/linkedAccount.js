@@ -22,7 +22,7 @@ export const linkedAccount = (id) => {
             // Get the cached name and image
             linkedName.innerText = profileCache[id].name;
             pfp.src = profileCache[id].image === undefined ? default_pfp : profileCache[id].image;
-            div.append(linkedName, pfp);
+            div.append(pfp, linkedName);
         }
     }
     // do a no network fetch to buffer the lag in polling

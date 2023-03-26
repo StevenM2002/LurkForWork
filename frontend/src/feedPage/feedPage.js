@@ -114,13 +114,14 @@ export const feedPage = () => {
     }
     // Variable for when fetch is firing as scroll can call fetch multiple times before a fetch resolves and append results multiple times prematurely
     let isFetchFiring = false;
-
+    let offlineHasBeenCalled = false;
     const getOfflineFeed = () => {
+        offlineHasBeenCalled = true;
         const feed = JSON.parse(localStorage.getItem('feed'));
-        const numToLoad = Math.min(feed.length - numPostsLoaded, 5);
-        const nextFeed = feed.splice(numPostsLoaded, numToLoad);
-        numPostsLoaded += numToLoad;
-        nextFeed.map(ea => post(ea, createPostChild(ea))).forEach(ea => div.append(ea));
+        // const numToLoad = Math.min(feed.length - numPostsLoaded, 5);
+        // const nextFeed = feed.splice(numPostsLoaded, numToLoad);
+        // numPostsLoaded += numToLoad;
+        feed.map(ea => post(ea, createPostChild(ea))).forEach(ea => div.append(ea));
     }
 
     const fetchFeed = () => {
@@ -135,10 +136,13 @@ export const feedPage = () => {
         .then(res => res.map(ea => post(ea, createPostChild(ea))))
         .then(res => div.append(...res))
         .then(() => isFetchFiring = false)
+        .then(() => offlineHasBeenCalled = false)
         .catch(res => {
             console.log(res);
             if (res.error === 'No network detected') {
-                getOfflineFeed();
+                if (!offlineHasBeenCalled) { 
+                    getOfflineFeed();
+                }
             } else {
                 alert(res.error);
             }
