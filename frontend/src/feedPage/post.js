@@ -25,7 +25,7 @@ export const post = ( { id, creatorId, createdAt, image, title, start, likes, de
     const dateStart = document.createElement('b');
     const jobDescTitle = document.createElement('h3');
     const descJob = document.createElement('p');
-    const interactionsDiv = document.createElement('div');
+    const statsDiv = document.createElement('div');
     const likesNum = document.createElement('b');
     const commentsNum = document.createElement('b');
 
@@ -48,13 +48,14 @@ export const post = ( { id, creatorId, createdAt, image, title, start, likes, de
     dateStart.classList.add('dateStyle');
     jobDescTitle.innerText = 'Job Description'; 
     descJob.innerText = description;
-    interactionsDiv.classList.add('div-horizontal');
+    statsDiv.classList.add('div-horizontal');
+    statsDiv.classList.add('statsDiv');
     likesNum.innerText = `${likes.length} likes`;
     commentsNum.innerText = `${comments.length} comments`;
-    interactionsDiv.append(likesNum, commentsNum);
+    statsDiv.append(likesNum, commentsNum);
 
     // Connect elems
-    div.append(accountDiv, postedTime, titleJob, dateStart, imageJob, jobDescTitle, descJob, interactionsDiv);
+    div.append(accountDiv, postedTime, titleJob, dateStart, imageJob, jobDescTitle, descJob, statsDiv);
     if (children !== undefined) {
         div.appendChild(children);
     }

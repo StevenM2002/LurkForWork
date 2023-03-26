@@ -5,7 +5,6 @@ import { logoutButton } from "../loginPage/logoutButton.js";
 
 export const editAccountPage = () => {
     const pageDiv = document.createElement('div');
-    const formDiv = document.createElement('div');
     const form = document.createElement('form');
     const submitBtn = document.createElement('button');
     const cancelBtn = document.createElement('button');
@@ -15,14 +14,14 @@ export const editAccountPage = () => {
     submitBtn.type = 'submit';
     cancelBtn.innerText = 'Cancel';
     cancelBtn.classList.add('redBtn');
-    formDiv.classList.add('formLayout');
-    form.classList.add('centre-form');
+    form.classList.add('formLayout');
 
     let dataToSend = {};
     // Cant be bothered to give ids and do it by selecting so have pointers to elems instead
     const refToInputDivs = [];
     const makeNewInput = (name, labelText, type='text') => {
         const div = document.createElement('div');
+        div.classList.add('formElement');
         const checkbox = document.createElement('input');
         const checkboxLabel = document.createElement('label');
         const label = document.createElement('label');
@@ -112,8 +111,11 @@ export const editAccountPage = () => {
     });
 
     // Connect elems
-    form.append(name, email, pfp, pass, submitBtn, cancelBtn);
-    formDiv.append(form);
+    const divBtns = document.createElement('div');
+    divBtns.classList.add('div-horizontal');
+    divBtns.classList.add('headerDivHor');
+    divBtns.append(submitBtn, cancelBtn);
+    form.append(name, email, pfp, pass, divBtns);
     const header = document.createElement('header');
     header.append(linkedAccount(localStorage.getItem('userId')), linkToFeed());
     pageDiv.append(header, form);

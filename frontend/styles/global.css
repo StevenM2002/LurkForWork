@@ -117,8 +117,21 @@ h3 {
 }
 
 .formLayout {
-    height: 70vh;
+    height: 600px;
     transform: translate(-50%, -35%);
+}
+
+.formElement {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    font-size: small;
+    font-weight: bold;
+}
+
+.formElement input {
+    width: clamp(340px, 15vw, 50vw);
 }
 
 /* Form */
@@ -173,14 +186,6 @@ h3 {
     padding: 1rem;
 }
 
-/* .post .accountDiv .div-horizontal {
-    justify-content: space-between;
-}
-
-.post .accountDiv .div-horizontal b {
-    display: inline-flexbox;
-} */
-
 /* Modal */
 .background-modal {
     z-index: 5;
@@ -234,20 +239,6 @@ h3 {
 .red-x-background {
     background-image: url('../assets/close_red_x.png');
     background-size: cover;
-}
-
-/* AddJob Page */
-.formElement {
-    margin: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: right;
-    font-size: medium;
-    font-weight: bold;
-}
-
-.formElement input {
-    width: clamp(340px, 15vw, 50vw);
 }
 
 /* Account Page */
@@ -409,7 +400,7 @@ a:active {
 .subBtn {
     background-color: #6595F1;
     text-decoration: none;
-    border: none;
+    border: 3px #6595F1 solid;
     cursor: pointer;
     color: white;
 }
@@ -429,6 +420,14 @@ a:active {
 }
 
 /* Customised divs */
-.headerDivHor {
+.customHeaderDiv {
     width: clamp(400px, 50vw, 80vw);
+}
+
+.statsDiv {
+    padding: 0.5rem;
+}
+
+.statsDiv b {
+    padding: 0 2rem;
 }

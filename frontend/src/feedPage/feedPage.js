@@ -46,7 +46,7 @@ export const feedPage = () => {
 
     const navBar = document.createElement('div');
     navBar.classList.add('div-horizontal');
-    navBar.classList.add('headerDivHor');
+    navBar.classList.add('customHeaderDiv');
 
     navBar.append(showModalBtn, addJobLink(), logoutButton());
     accountDiv.append(linkedAccount(window.localStorage.getItem('userId')), navBar);
