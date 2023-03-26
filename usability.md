@@ -1,3 +1,5 @@
+- When logging in or registering, an alert notifies the user if (and which) fields are blank 
+
 - Logout button added for ease of use
 
 - Name and profile picture clicakble to take them to their account in multiple places such as comments or watched people
